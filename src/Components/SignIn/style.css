@@ -1,0 +1,9 @@
+.SignIn{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, dodgerblue , purple );
+}
+
+form {
+    width: 90%;
+}

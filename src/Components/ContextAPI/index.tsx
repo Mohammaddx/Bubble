@@ -1,15 +1,22 @@
-import React, {useState} from 'react';
+import  React , {useState} from 'react';
 
-export const ContextComment = React.createContext<any | null>(null)
-export const ctxt = ContextComment.Provider
+ export interface AppContextForComment{
+    text: string 
+}
 
-const ContextAPI: React.FC = (props)=>{
-    const [comments, setComments] = useState([])
+export const context = React.createContext<AppContextForComment | null>(null)
+export const AppContextProvider = context.Provider;
+export const AppContextConsumer = context.Consumer;
+
+const CommentsContext: React.FC = (props) =>{
+    const [comment , setCommnts] = useState([])
+    const value: any = [comment, setCommnts]
     return(
-        <div>
-            
-        </div>
+        <AppContextProvider value={value}>
+            {props.children}
+        </AppContextProvider>
     )
 }
 
-export default ContextAPI;
+export default CommentsContext;
+

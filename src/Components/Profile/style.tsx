@@ -15,6 +15,20 @@ export const useStyle = makeStyles((theme: Theme)=>
             border: '2px solid aqua',
             borderRadius: '50%',
             padding: '10px'
+        },
+        info_section: {
+            padding: '15px' ,
+            color: '#fff',
+            position: 'relative', 
+            top: '20px'
+        },
+        Button: {
+            position: 'relative', 
+            top: '10px'
+        },
+        tabs_section: {
+            position: 'relative', 
+            top: '40px'
         }
     
      })

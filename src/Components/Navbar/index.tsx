@@ -10,7 +10,7 @@ export default function NavBar() {
   const classes = useStyles();
   
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static" className={classes.navbar}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>

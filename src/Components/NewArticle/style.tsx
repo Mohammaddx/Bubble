@@ -5,7 +5,9 @@ export const useStyle = makeStyles((theme: Theme)=>
         root:{
             width: '80%',
             margin: 'auto',
-            padding: '20px'
+            padding: '20px',
+            position: 'relative',
+            top: '20px',
         },
         textField: {
             marginLeft: theme.spacing(1),

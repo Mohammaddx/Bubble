@@ -1,5 +1,4 @@
 import * as React from 'react'
-import './style.css'
 import {NavLink} from 'react-router-dom'
 import WaterWave from 'react-water-wave';
 import image from './HiScreenBackground.jpg'
@@ -7,7 +6,10 @@ import ReactWOW from 'react-wow'
 import Logo from './Logo.png'
 import '../../animate.css'
 import '../../hover.css'
+import {useStyle} from './style'
+
 const HiScreen:React.FC = () =>{
+    const classes = useStyle()
     return(
         
             
@@ -17,16 +19,16 @@ const HiScreen:React.FC = () =>{
       
     {() => (
         
-     <div className="hi_screen">
+     <div className={classes.root}>
       
-            <div className="container">
+            <div className={classes.container}>
                 <ReactWOW animation="zoomIn">
-                <img src={Logo} alt="Logo" className="hvr-grow-rotate" />
+                <img src={Logo} alt="Logo" className={`${classes.image} hvr-grow-rotate`} />
                 </ReactWOW>
-                <h1>Bubble</h1>
-                <h2>~Welcome to you~</h2>
+                <h1 className={classes.Headline1}>Bubble</h1>
+                <h2 className={classes.Headline2}>~Welcome to you~</h2>
                 <ReactWOW animation="fadeIn">
-                <NavLink to="/Home"><button>Get Started</button></NavLink>
+                <NavLink to="/Home"><button className={classes.Button}>Get Started</button></NavLink>
                 </ReactWOW>
             </div>
 
@@ -39,3 +41,4 @@ const HiScreen:React.FC = () =>{
 }
 
 export default HiScreen;
+

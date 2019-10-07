@@ -3,7 +3,6 @@ import Grid from '@material-ui/core/Grid'
 import TextFeild from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography  from '@material-ui/core/Typography'
-import './style.css'
 import {useStyles} from './style'
 
 
@@ -11,7 +10,7 @@ import {useStyles} from './style'
 const SignIn: React.FC = ()=>{
     const classes = useStyles();
   return(
-    <div className="SignIn">
+    <div className={classes.SignIn}>
       <Grid container spacing={2} className={classes.root}>
           <Grid xs={12} className={classes.title}><Typography variant="h5">Sign In</Typography></Grid>
           <form className={classes.form}>

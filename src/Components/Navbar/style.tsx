@@ -13,6 +13,7 @@ export const useStyles = makeStyles((theme: Theme) =>
     },
     navbar: {
       backgroundColor: 'dodgerblue',
+      position: 'sticky'
     },
     border: {
       width: '70%'

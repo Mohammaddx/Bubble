@@ -7,7 +7,7 @@ import {useStyle} from './style'
 const ReadMoreInfoProfile: React.FC = ()=>{
     const classes = useStyle()
     return(
-        <div className="Profile_info" style={{position: 'relative' , marginTop: '70px'}}>
+        <div className={classes.Profile_info} >
             <div className={classes.root}>
             <div className={classes.root}>
                 <img src={Pic} alt="Profile Picture" className={classes.img}/>

@@ -5,7 +5,7 @@ export const useStyle = makeStyles((theme: Theme) =>
      root: {
          border: '1px solid #aaa',
          width: '50%',
-         margin: '10px aout',
+         margin: '10px auto',
          padding: '10px',
          minHeight: '120px',
          minWidth: '300px',

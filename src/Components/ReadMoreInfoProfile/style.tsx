@@ -19,6 +19,10 @@ export const useStyle = makeStyles((theme: Theme)=>
             margin: '10px',
             position: 'relative',
             top: '25px'
+        },
+        Profile_info: {
+            position: 'relative', 
+            marginTop: '70px'   
         }
     })
     )

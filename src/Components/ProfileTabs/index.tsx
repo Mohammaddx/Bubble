@@ -51,7 +51,7 @@ function a11yProps(index: any) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="#fff" style={{boxShadow: 'none', borderBottom: '1px solid #aaa'}}>
+      <AppBar className={classes.AppBar} position="static" color="#fff">
         <Tabs
           value={value}
           onChange={handleChange}

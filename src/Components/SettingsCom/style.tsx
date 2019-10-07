@@ -3,7 +3,9 @@ import {makeStyles, createStyles, Theme} from '@material-ui/core/styles'
 export const useStyle = makeStyles((theme: Theme)=>
     createStyles({
         root:{
-            width: '100%'
+            width: '100%',
+            position: 'relative',
+            top: '20px',
         },
         rootChild: {
             width: '80%',

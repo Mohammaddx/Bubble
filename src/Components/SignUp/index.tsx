@@ -3,14 +3,13 @@ import Grid from '@material-ui/core/Grid'
 import TextFeild from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography  from '@material-ui/core/Typography'
-import './style.css'
 import {useStyles} from './style'
 
 
 const SignUp: React.FC = ()=>{
     const classes = useStyles();
   return(
-    <div className="SignUp">
+    <div className={classes.SignUp}>
       <Grid container spacing={2} className={classes.root}>
           <Grid xs={12} className={classes.title}><Typography variant="h5">Sign Up</Typography></Grid>
           <form className={classes.form}>

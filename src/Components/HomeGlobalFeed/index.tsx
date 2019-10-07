@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Article from '../Article/index'
-
+import './style.css'
 const HomeGlobalFeed: React.FC = ()=>{
     return(
-        <div style={{border: '1px solid #aaa'}}>
+        <div className="container">
             <Article />
         </div>
     )

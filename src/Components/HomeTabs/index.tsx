@@ -1,14 +1,12 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import HomeGlobalFeed from '../HomeGlobalFeed/index'
 import HomeYourFeed from '../HomeYourFeed/index'
+import {useStyles}  from './style'
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -39,14 +37,6 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '80%',
-    backgroundColor: '#fff',
-    margin: 'auto'
-  },
-}));
 
  const HomeTabs: React.FC =()=> {
   const classes = useStyles();
@@ -58,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="#fff" style={{boxShadow: 'none', borderBottom: '1px solid #aaa'}}>
+      <AppBar position="static"  style={{boxShadow: 'none', borderBottom: '1px solid #aaa', backgroundColor: '#fff'}}>
         <Tabs
           value={value}
           onChange={handleChange}

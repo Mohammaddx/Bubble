@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter , Route, Switch} from 'react-router-dom'
 import SignUp from '../SignUp/index'
 import SignIn from '../SignIn/index'
@@ -11,7 +11,18 @@ import HiScreen from '../HiScreen/index'
 import ReadMore from '../ReadMore/index'
 import CommentsContext from '../ContextAPI/index'
 const IndexPage: React.FC = ()=>{
-   
+    const [query, setQuery] = useState();
+    useEffect(() => {
+      getData()
+    }, [query]);
+  
+    const getData = async() =>{
+      const response = await fetch("https://conduit.productionready.io/api/tags")
+      const data = await response.json()
+      console.log(data);
+     
+      
+    }
     return( 
         <BrowserRouter>
         <Route exact path="/" component={HiScreen}/>

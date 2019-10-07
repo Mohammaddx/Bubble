@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import Comment from '../Comment/index'
-import {context, AppContextConsumer} from '../ContextAPI/index'
+import {context} from '../ContextAPI/index'
 
 const CommentList: React.FC = () =>{
     const [comment , setCommnts]: any = useContext(context)

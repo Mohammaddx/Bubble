@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -9,6 +8,7 @@ import Box from '@material-ui/core/Box';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import FavioretArticles from '../ProfileFavioretArticles/index'
 import MyArticles from '../ProfileMyArticles/index'
+import {useStyles} from './style'
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -39,14 +39,7 @@ function a11yProps(index: any) {
   };
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '80%',
-    backgroundColor: '#fff',
-    margin: 'auto'
-  },
-}));
+
 
  const ProfileTabs: React.FC =()=> {
   const classes = useStyles();

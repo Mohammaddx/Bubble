@@ -1,22 +1,9 @@
 import * as React from 'react';
-import {makeStyles, createStyles, Theme} from '@material-ui/core/styles'
 import {NavLink} from 'react-router-dom'
 import Grid from '@material-ui/core/Grid'
 import ArticleHeader from '../ArticleHeader/index'
 import ArticleBody from '../ArticleBody/index'
-const useStyle = makeStyles((theme: Theme)=>
-    createStyles({
-        root: {
-            border: '1px solid #aaa',
-            borderRadius: '5px'
-        },
-        link: {
-            textDecoration: 'none',
-            color: 'dodgerblue',
-            cursor: 'pointer'
-        }
-    })
-    )
+import {useStyle} from './style'
 
 const Article: React.FC = () =>{
     const classes = useStyle()

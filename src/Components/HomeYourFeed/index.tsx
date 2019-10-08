@@ -3,7 +3,7 @@ import Article from '../Article/index'
 
 const HomeYourFeed: React.FC = ()=>{
     return(
-        <div style={{border: '1px solid #aaa'}}>
+        <div>
             <Article />
         </div>
     )

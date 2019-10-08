@@ -22,6 +22,18 @@ export const useStyles = makeStyles((theme: Theme) =>
       textDecoration: 'none',
       color: '#fff',
       padding: '5px 10px',
+    },
+    List: {
+      listStyleType: 'none'
+    },
+    itemList: {
+      display: 'inline-block',
+      padding: '10px',
+      margin: 'auto',
+      alignItems: 'center',
+    },
+    iFont: {
+      marginRight: '5px'
     }
   }),
 );

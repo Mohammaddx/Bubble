@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
     AppBar: {
       boxShadow: 'none', 
-      borderBottom: '1px solid #aaa'
+      borderBottom: '1px solid #aaa',
+      backgroundColor: '#fff'
     }
   }));

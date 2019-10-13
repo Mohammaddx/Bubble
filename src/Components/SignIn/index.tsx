@@ -15,7 +15,7 @@ const SignIn: React.FC = ()=>{
     <div className={classes.SignIn}>
       <ReactWOW animation="jackInTheBox">
       <Grid container spacing={2} className={classes.root}>
-          <Grid xs={12} className={classes.title}><Typography variant="h5">Sign In</Typography></Grid>
+          <Grid item xs={12} className={classes.title}><Typography variant="h5">Sign In</Typography></Grid>
           
           <form className={classes.form}>
 

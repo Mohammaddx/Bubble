@@ -13,7 +13,7 @@ const SignUp: React.FC = ()=>{
     <div className={classes.SignUp}>
       <ReactWOW animation="jackInTheBox">
       <Grid container spacing={2} className={classes.root}>
-          <Grid xs={12} className={classes.title}><Typography variant="h5">Sign Up</Typography></Grid>
+          <Grid item xs={12} className={classes.title}><Typography variant="h5">Sign Up</Typography></Grid>
           <form className={classes.form}>
         <Grid item xs={12}>
           <TextFeild className={classes.textFeild} variant="outlined"

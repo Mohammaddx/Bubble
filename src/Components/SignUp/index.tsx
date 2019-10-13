@@ -4,12 +4,14 @@ import TextFeild from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography  from '@material-ui/core/Typography'
 import {useStyles} from './style'
-
+import ReactWOW from 'react-wow'
+import '../../animate.css'
 
 const SignUp: React.FC = ()=>{
     const classes = useStyles();
   return(
     <div className={classes.SignUp}>
+      <ReactWOW animation="jackInTheBox">
       <Grid container spacing={2} className={classes.root}>
           <Grid xs={12} className={classes.title}><Typography variant="h5">Sign Up</Typography></Grid>
           <form className={classes.form}>
@@ -56,7 +58,7 @@ const SignUp: React.FC = ()=>{
             className={classes.submit}>Sign UP</Button>
         </Grid>
         </form>
-      </Grid>
+      </Grid></ReactWOW>
     </div>
   )
 }

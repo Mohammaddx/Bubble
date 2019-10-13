@@ -3,6 +3,7 @@ import HomeTabs from '../HomeTabs/index'
 import PopulerTags from '../PopulerTags/index'
 import {useStyle} from './style'
 
+
 const Home: React.FC = ()=>{
     const classes = useStyle()
     return(

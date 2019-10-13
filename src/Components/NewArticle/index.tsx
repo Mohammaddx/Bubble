@@ -4,6 +4,8 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Avatar from '@material-ui/core/Avatar'
+import ReactWOW from 'react-wow'
+import '../../animate.css'
 import {useStyle} from './style'
 
 const NewArticle: React.FC = () =>{
@@ -17,6 +19,7 @@ const NewArticle: React.FC = () =>{
                     <AssignmentIcon className={classes.icon} fontSize='large'/>
                 </Avatar> 
                 <Grid item xs={12}>
+                <ReactWOW animation="fadeInLeftBig">
                 <TextField
                     id="outlined-email-input"
                     label="Article Title"
@@ -25,10 +28,11 @@ const NewArticle: React.FC = () =>{
                     name="ArticleTitle"
                     margin="normal"
                     variant="outlined"
-                     />
+                     /></ReactWOW>
                 </Grid>
 
                 <Grid item xs={12}>
+                <ReactWOW animation="fadeInRightBig">
                 <TextField
                     id="outlined-email-input"
                     label="What's this article about?"
@@ -37,10 +41,11 @@ const NewArticle: React.FC = () =>{
                     name="about"
                     margin="normal"
                     variant="outlined"
-                     />
+                     /></ReactWOW>
                 </Grid>
 
                 <Grid item xs={12}>
+                <ReactWOW animation="fadeInUp">
                 <TextField
                     id="outlined-email-input"
                     label="Write your article (in markdown)"
@@ -51,10 +56,11 @@ const NewArticle: React.FC = () =>{
                     variant="outlined"
                     rowsMax={10}
                     multiline={true}
-                     />
+                     /></ReactWOW>
                 </Grid>
 
                 <Grid item xs={12}>
+                <ReactWOW animation="fadeIn">
                 <TextField
                     id="outlined-email-input"
                     label="Enter Tags"
@@ -63,7 +69,7 @@ const NewArticle: React.FC = () =>{
                     name="EnterTags"
                     margin="normal"
                     variant="outlined"
-                     />
+                     /></ReactWOW>
                 </Grid>
 
                 <Button className={classes.button}>Publish Article</Button>

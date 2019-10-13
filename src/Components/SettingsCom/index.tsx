@@ -3,6 +3,8 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
+import ReactWOW from 'react-wow'
+import '../../animate.css'
 import {useStyle} from './style'
 
 const Settings: React.FC = () =>{
@@ -10,6 +12,7 @@ const Settings: React.FC = () =>{
     return(
         <div className={classes.root}>
             <div className={classes.rootChild}>
+                <ReactWOW animation="zoomIn">
             <form style={{margin: 'auto'}}>
                 <Typography variant="h4" component="h2">
                     Your Settings
@@ -80,7 +83,7 @@ const Settings: React.FC = () =>{
                    <Button className={classes.button}>Update Settings</Button>
                 </Grid>
             </form>
-
+            </ReactWOW>
             <div className={classes.divFooter}>
             <hr/>
 

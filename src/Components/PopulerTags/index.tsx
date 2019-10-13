@@ -2,6 +2,8 @@ import React , {useState , useEffect} from 'react';
 import Grid from '@material-ui/core/Grid'
 import axios  from 'axios';
 import {useStyle} from './style'
+import ReactWOW from 'react-wow'
+import '../../animate.css'
 
     const PopulerTags = (props: any)=>{
         const classes = useStyle();
@@ -17,12 +19,14 @@ import {useStyle} from './style'
     })
 
     return(
+        <ReactWOW animation="slideInUp">
         <div className={classes.container}>
             <h4 className={classes.title}>Populer Tags</h4>
             <Grid container spacing={1}>
                 {PTDWord}
             </Grid>
         </div>
+        </ReactWOW>
     )
 }
 

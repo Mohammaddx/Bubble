@@ -10,6 +10,11 @@ import Home from '../Home/index'
 import HiScreen from '../HiScreen/index'
 import ReadMore from '../ReadMore/index'
 import CommentsContext from '../ContextAPI/index'
+
+export interface IndexPageInterface{
+  children: React.ReactNode,
+}
+
 const IndexPage: React.FC = ()=>{
     const [query, setQuery] = useState();
     useEffect(() => {
@@ -25,11 +30,10 @@ const IndexPage: React.FC = ()=>{
     }
     return( 
         <BrowserRouter>
-        <Route exact path="/" component={HiScreen}/>
        
             <NavBar />
                 <Switch>
-                    
+                    <Route exact path="/" component={HiScreen}/>
                     <Route path="/Home" component={Home}/>
                     <Route path="/SignUp" component={SignUp}/>
                     <Route path="/SignIn" component={SignIn}/>
@@ -42,6 +46,10 @@ const IndexPage: React.FC = ()=>{
                 </Switch>
        </BrowserRouter>
     )
+
+    IndexPage.defaultProps = {
+      children: true
+    }
 }
 
 export default IndexPage;

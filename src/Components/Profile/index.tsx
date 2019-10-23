@@ -7,6 +7,10 @@ import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
 
+export interface ProfileInterface{
+    children: React.ReactNode
+}
+
 const Profile: React.FC = ()=>{
     const classes = useStyle()
     return(
@@ -14,7 +18,7 @@ const Profile: React.FC = ()=>{
                 <header className={classes.header}>
                     <div className={classes.info_section} >
                         <ReactWOW animation="rubberBand">
-                        <img src={Logo} alt="profiel picture" className={classes.img}/>
+                        <img src={Logo} alt="pic" className={classes.img}/>
                         </ReactWOW>
 
                         <ReactWOW animation="slideInUp">
@@ -34,6 +38,10 @@ const Profile: React.FC = ()=>{
                 </div>
         </div>
     )
+
+    Profile.defaultProps = {
+        children: null
+    }
 }
 
 export default Profile;

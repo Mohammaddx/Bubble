@@ -1,8 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import pic from './me.jpg'
 import {useStyle} from  './style'
+
+export interface ArticleHeaderInterface{
+    children: React.ReactNode,
+}
 
 const ArticleHeader: React.FC = ()=>{
     const [count, setCount] = useState(0)
@@ -47,6 +51,10 @@ const ArticleHeader: React.FC = ()=>{
             className={classes.Button}> <FavoriteIcon /> <span>{count}</span></Button>
         </div>
     )
+
+    ArticleHeader.defaultProps={
+        children: null
+    }
 }
 
 export default ArticleHeader;

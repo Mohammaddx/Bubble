@@ -7,6 +7,10 @@ import {useStyles} from './style'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 
+export interface SignUpInterface{
+  children: React.ReactNode
+}
+
 const SignUp: React.FC = ()=>{
     const classes = useStyles();
   return(
@@ -61,6 +65,9 @@ const SignUp: React.FC = ()=>{
       </Grid></ReactWOW>
     </div>
   )
+    SignUp.defaultProps = {
+      children: null
+    }
 }
 
 export default SignUp;

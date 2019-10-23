@@ -8,7 +8,11 @@ import '../../animate.css'
 import '../../hover.css'
 import {useStyle} from './style'
 
-const HiScreen:React.FC = () =>{
+export interface HiScreenInterface {
+    children?: React.ReactNode
+  }
+
+const HiScreen:React.FC<HiScreenInterface> = (props) =>{
     const classes = useStyle()
     return(
         
@@ -38,6 +42,9 @@ const HiScreen:React.FC = () =>{
         </WaterWave>
         
     )
+    HiScreen.defaultProps = {
+        children: null,
+      };
 }
 
 export default HiScreen;

@@ -7,6 +7,10 @@ import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
 
+export interface SettingsInterface{
+    children: React.ReactNode,
+}
+
 const Settings: React.FC = () =>{
     const classes = useStyle()
     return(
@@ -95,6 +99,10 @@ const Settings: React.FC = () =>{
             
         </div>
     )
+
+    Settings.defaultProps = {
+        children: null
+    }
 }
 
 export default Settings;

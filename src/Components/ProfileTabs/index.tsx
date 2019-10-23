@@ -9,6 +9,11 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import FavioretArticles from '../ProfileFavioretArticles/index'
 import MyArticles from '../ProfileMyArticles/index'
 import {useStyles} from './style'
+
+export interface ProfileTabsInterface{
+  children: React.ReactNode
+}
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
@@ -73,6 +78,10 @@ function a11yProps(index: any) {
       </TabPanel>
     </div>
   );
+
+  ProfileTabs.defaultProps = {
+    children: true
+  }
 }
 
 export default ProfileTabs;

@@ -5,6 +5,10 @@ import {useStyle} from './style'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 
+export interface PopulerTagsInterface{
+    children: React.ReactNode,
+}
+
     const PopulerTags = (props: any)=>{
         const classes = useStyle();
     const [words , setWord] = useState([]);
@@ -28,6 +32,7 @@ import '../../animate.css'
         </div>
         </ReactWOW>
     )
+
 }
 
 export default PopulerTags;

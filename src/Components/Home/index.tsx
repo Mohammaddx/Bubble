@@ -3,6 +3,9 @@ import HomeTabs from '../HomeTabs/index'
 import PopulerTags from '../PopulerTags/index'
 import {useStyle} from './style'
 
+export interface HomeInterface{
+    children: React.ReactNode,
+}
 
 const Home: React.FC = ()=>{
     const classes = useStyle()
@@ -18,6 +21,10 @@ const Home: React.FC = ()=>{
             </div>
         </div>
     )
+
+    Home.defaultProps ={
+        children: null
+    }
 }
 
 export default Home;

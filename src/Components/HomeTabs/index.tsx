@@ -7,10 +7,15 @@ import Box from '@material-ui/core/Box';
 import HomeGlobalFeed from '../HomeGlobalFeed/index'
 import HomeYourFeed from '../HomeYourFeed/index'
 import {useStyles}  from './style'
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: any;
   value: any;
+}
+
+export interface HomeTabsInterface {
+  children: React.ReactNode,
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -70,6 +75,10 @@ function a11yProps(index: any) {
       </TabPanel>
     </div>
   );
+
+  HomeTabs.defaultProps = {
+    children: true
+  }
 }
 
 export default HomeTabs;

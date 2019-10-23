@@ -5,7 +5,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {useStyles} from './style'
 
-export default function NavBar() {
+export interface NavBarInterface { 
+  children: React.ReactNode
+}
+
+const NavBar: React.FC = () => {
   const classes = useStyles();
   
   return (
@@ -29,5 +33,9 @@ export default function NavBar() {
       </AppBar>
     </div>
   );
+    NavBar.defaultProps = {
+      children: null
+    }
 }
 
+export default NavBar;

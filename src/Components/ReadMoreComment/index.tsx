@@ -3,6 +3,10 @@ import Button from '@material-ui/core/Button'
 import {context} from '../ContextAPI/index'
 import {useStyle} from './style'
 
+export interface ReadMoreCommnetInterface{
+    children: React.ReactNode
+}
+
 const ReadMoreCommnet: React.FC = (props: any) =>{
     const classes = useStyle()
    const [text, setText] = useState('')
@@ -38,6 +42,10 @@ const ReadMoreCommnet: React.FC = (props: any) =>{
             
         </div>
     )
+
+    ReadMoreCommnet.defaultProps = {
+        children: null
+    }
 }
 
 export default ReadMoreCommnet;

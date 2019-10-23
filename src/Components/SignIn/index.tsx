@@ -7,6 +7,9 @@ import {useStyles} from './style'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 
+export interface SignInInterface{
+  children: React.ReactNode,
+}
 
 const SignIn: React.FC = ()=>{
     const classes = useStyles();
@@ -54,6 +57,10 @@ const SignIn: React.FC = ()=>{
     </div>
     
   )
+    SignIn.defaultProps = {
+      children: null
+    }
+
 }
 
 export default SignIn;

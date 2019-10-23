@@ -4,6 +4,10 @@ import  React , {useState} from 'react';
     text: string 
 }
 
+export interface CommentsContextInterface{
+    children: React.ReactNode,
+}
+
 export const context = React.createContext<AppContextForComment | null>(null)
 export const AppContextProvider = context.Provider;
 export const AppContextConsumer = context.Consumer;
@@ -16,6 +20,9 @@ const CommentsContext: React.FC = (props) =>{
             {props.children}
         </AppContextProvider>
     )
+    CommentsContext.defaultProps ={
+        children: null
+    }
 }
 
 export default CommentsContext;

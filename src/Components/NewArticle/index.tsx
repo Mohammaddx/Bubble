@@ -8,6 +8,10 @@ import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
 
+export interface NewArticleInterface{
+    children: React.ReactNode,
+}
+
 const NewArticle: React.FC = () =>{
     const classes = useStyle();
     return(
@@ -79,6 +83,10 @@ const NewArticle: React.FC = () =>{
              </Grid>
         </div>
     )
+
+    NewArticle.defaultProps = {
+        children: null
+    }
 }
 
 export default NewArticle;

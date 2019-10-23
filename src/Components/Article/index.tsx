@@ -4,9 +4,11 @@ import Grid from '@material-ui/core/Grid'
 import ArticleHeader from '../ArticleHeader/index'
 import ArticleBody from '../ArticleBody/index'
 import {useStyle} from './style'
-import ReactWOW from 'react-wow'
 import '../../animate.css'
 
+export interface ArticleInterface{
+    children?: React.ReactNode,
+}
 const Article: React.FC = () =>{
     const classes = useStyle()
     return(
@@ -19,6 +21,9 @@ const Article: React.FC = () =>{
             </Grid>
         </div>
     )
+    Article.defaultProps = {
+        children: true
+    }
 }
 
 export default Article;

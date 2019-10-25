@@ -8,7 +8,10 @@ export interface CommentInterface{
     children: React.ReactNode,
 }
 
-const Comment: React.FC<{text:string}> = ({text}) =>{
+
+
+const Comment: React.FC<{text:string}> = (text) =>{
+    
     const classes = useStyle()
     return(
         

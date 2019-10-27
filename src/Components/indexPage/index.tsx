@@ -16,18 +16,7 @@ export interface IndexPageInterface{
 }
 
 const IndexPage: React.FC = ()=>{
-    const [query, setQuery] = useState();
-    useEffect(() => {
-      getData()
-    }, [query]);
-  
-    const getData = async() =>{
-      const response = await fetch("https://conduit.productionready.io/api/tags")
-      const data = await response.json()
-      console.log(data);
-     
-      
-    }
+   
     return( 
         <BrowserRouter>
        

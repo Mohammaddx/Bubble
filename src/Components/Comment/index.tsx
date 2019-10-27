@@ -10,7 +10,7 @@ export interface CommentInterface{
 
 
 
-const Comment: React.FC<{text:string}> = (text) =>{
+const Comment: React.FC<{text:string}> = ({text}) =>{
     
     const classes = useStyle()
     return(

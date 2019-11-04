@@ -1,20 +1,19 @@
 import * as React from 'react';
 
 export interface ArticleBodyInterface{
-    children: React.ReactNode
+    children: React.ReactNode,
+    title: string,
+    body: string
 }
 
-const ArticleBody: React.FC = () =>{
+const ArticleBody: React.FC<{title: string, body: string}> = ({title, body}) =>{
     return(
         <div>
-            <h3>Title</h3>
-            <p>this is the paragraph about the title</p>
+            <h3>{title}</h3>
+            <p>{body}</p>
         </div>
     )
 
-    ArticleBody.defaultProps = {
-        children: null
-    }
 }
 
 export default ArticleBody;

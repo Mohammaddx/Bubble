@@ -15,7 +15,6 @@ export interface PopulerTagsInterface{
 
     useEffect(() => {
         API.get('tags').then((res: any)=>{
-            
             setWord(res.data.tags)
         })
         .catch(error =>{

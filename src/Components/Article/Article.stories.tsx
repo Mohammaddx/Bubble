@@ -47,8 +47,5 @@ componentStory.add("Article Component", ()=>(
                 to profile persone who posts this article.
             </p>
             </header> 
-            <Article />
-       
-       
     </div>
 ))

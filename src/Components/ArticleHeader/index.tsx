@@ -6,9 +6,15 @@ import {useStyle} from  './style'
 
 export interface ArticleHeaderInterface{
     children: React.ReactNode,
+    username: string,
+    image: string,
+    createdat: string,
+    favorited: boolean,
+    favoritesCount: number
 }
 
-const ArticleHeader: React.FC = ()=>{
+const ArticleHeader: React.FC<{username: string, image: string, createdat: string, favorited: boolean, favoritesCount: number}> = ({username, image, createdat, favorited, favoritesCount})=>{
+
     const [count, setCount] = useState(0)
     const [variant, setVariant] = useState('outlined')
 
@@ -39,22 +45,19 @@ const ArticleHeader: React.FC = ()=>{
         <div className={classes.root}>
            <div className={classes.root}>
                <div style={{padding: '10px'}}>
-            <img src={pic} alt="profile picture" className={classes.img}/>
+            <img src={image} alt="profile picture" className={classes.img}/>
             </div>
             <div className={classes.HeaderDiv}>
-                <h4 className={classes.HeaderDivH4}>Mohammad Ahmad</h4>
-                <span className={classes.HeaderDivSpan}><i className="fas fa-history"></i> septemper 12, 2019</span>
+                <h4 className={classes.HeaderDivH4}>{username}</h4>
+                <span className={classes.HeaderDivSpan}><i className="fas fa-history"></i> {createdat} </span>
             </div>   
             </div> 
 
             <Button size="medium" color="secondary" onClick={changeCountAndVariant} variant={variant}
-            className={classes.Button}> <FavoriteIcon /> <span>{count}</span></Button>
+            className={classes.Button}> <FavoriteIcon /> <span>{favoritesCount}</span></Button>
         </div>
     )
 
-    ArticleHeader.defaultProps={
-        children: null
-    }
 }
 
 export default ArticleHeader;

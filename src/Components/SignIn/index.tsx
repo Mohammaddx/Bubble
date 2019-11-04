@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid'
 import TextFeild from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -20,16 +20,17 @@ const SignIn: React.FC = ()=>{
     const handleEmail = (event: any) =>{
       setEmail(event.target.value)
     }
-
+    
     const handlePassword = (event: any) =>{
       setPassword(event.target.value)
     }
 
-    const handleSubmit = async () =>{
-      API.post('users/login', {user: {email, password}})
-      .then(res =>{
+    const handleSubmit = () =>{
+      API.post('users/login', {user: {email, password}},
+      {headers: {'Authorization': localStorage.getItem('Token')}})
+      .then((res: any) =>{
         console.log(res);
-        console.log(res.data);
+      localStorage.setItem('Token', res.data.token);
       }).catch((error: any) =>{
         console.error(error);
       })
@@ -81,9 +82,7 @@ const SignIn: React.FC = ()=>{
     </div>
     
   )
-    SignIn.defaultProps = {
-      children: null
-    }
+  
 
 }
 

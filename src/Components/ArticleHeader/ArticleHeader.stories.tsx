@@ -39,7 +39,5 @@ componentStory.add("Article Header Component", ()=>(
         that's containe a picture for account, the username for the account
         and a button to give the post owner a like if you like his article</p>
         </header>
-        <ArticleHeader />
-        
     </div>
 ))

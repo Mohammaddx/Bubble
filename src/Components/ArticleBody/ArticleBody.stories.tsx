@@ -39,7 +39,6 @@ componentStory.add("Article Body Component", ()=>(
         that's containe a title for the article and the article text or what the 
         article talking about</p>
         </header>
-        <ArticleBody />
     </div>
     
 ))

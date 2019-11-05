@@ -1,7 +1,7 @@
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext,useEffect} from 'react';
 import Button from '@material-ui/core/Button'
-import {context} from '../ContextAPI/index'
 import {useStyle} from './style'
+import API from '../../utils/axios'
 
 export interface ReadMoreCommnetInterface{
     children: React.ReactNode
@@ -9,27 +9,17 @@ export interface ReadMoreCommnetInterface{
 
 const ReadMoreCommnet: React.FC = (props: any) =>{
     const classes = useStyle()
-   const [text, setText] = useState('')
-
-   const addText = (e: any) =>{
-    setText(e.target.value)
-   }
-
-   const [comment, setComments]: any = useContext(context)
-   
-   const addComment = (e: any) =>{
-       e.preventDefault()
-       setComments(comment.concat({text}));
-       setText("")
-   }
+    const [body, setBody]: any = useState('');
+       const handleCommnetBody = (e: any) =>{
+           setBody(e.target.value); 
+       }
     return(
         <div>
-            <form className={classes.form} onSubmit={addComment}>
+            <form className={classes.form}>
             <div className={classes.root}> 
                 <textarea placeholder='Write a Comment...' 
                           className={classes.textarea}
-                          value={text} 
-                          onChange={addText}>
+                          onChange={handleCommnetBody}>
 
                 </textarea>
                 <div className={classes.divFooter}> 
@@ -42,10 +32,6 @@ const ReadMoreCommnet: React.FC = (props: any) =>{
             
         </div>
     )
-
-    ReadMoreCommnet.defaultProps = {
-        children: null
-    }
 }
 
 export default ReadMoreCommnet;

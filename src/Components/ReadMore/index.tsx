@@ -11,6 +11,7 @@ export interface ReadMore{
 
 const ReadMore: React.FC = ()=>{
     const classes = useStyle()
+    
     return(
         <div>
             <header className={classes.header}>

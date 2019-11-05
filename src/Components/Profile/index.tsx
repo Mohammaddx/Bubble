@@ -5,7 +5,8 @@ import ProfileTabs from '../ProfileTabs/index'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
-import API from 'axios'
+import AXIOS from '../../utils/axios'
+import utl from '../../utils/utils'
 
 export interface ProfileInterface{
     children: React.ReactNode
@@ -18,8 +19,9 @@ const Profile: React.FC = ()=>{
     const [following, setFellowing]: any = useState(false) //not useing here now
     
     useEffect(() =>{
-        const handleProfileInfo = () =>{
-            API.get('profiles/:username')
+        console.log('baby');
+        
+            AXIOS.get(`profiles/${utl.UserDeta().username}`)
             .then(res =>{
                 console.log(res);
                 console.log(res.data);
@@ -32,7 +34,7 @@ const Profile: React.FC = ()=>{
                 console.error(err);
                 
             })
-        }
+        
     }, [])
     
     

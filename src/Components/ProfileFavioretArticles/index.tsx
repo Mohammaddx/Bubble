@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Article from '../Article/index'
-import API from '../../axios'
+import API from '../../utils/axios'
 
 export interface FavioretArticleInterface{
     children: React.ReactNode,
@@ -19,20 +19,19 @@ const FavioretArticle: React.FC = ()=>{
     const [article, setArticle] = useState([]);
 
     useEffect(()=>{
+        API.get('articles')
+        .then((res: any) =>{
+           
+                setArticle(res.data.articles);
         
-            API.get('articles')
-            .then((res: any) =>{
-                console.log(res.data);
-                if(res.data.articles.favorited == true){
-                   setArticle(res.data.articles);
-                }
-               
-            }).catch((error: any) =>{
-                console.log(error);
-                
-            })
-        
-    }, [])
+           
+        }).catch((error: any) =>{
+            console.log(error);
+            
+        })
+    
+}, [])
+ 
         
     const articleEL = article.map((el: any) =>(
         <Article key={el} image={el.author.image} title={el.title} body={el.body} tagList={el.tagList} 

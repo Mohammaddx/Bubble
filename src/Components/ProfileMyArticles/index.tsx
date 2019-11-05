@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Article from '../Article/index'
-import API from '../../axios'
+import API from '../../utils/axios'
 
 export interface MyArticlesInterface{
     children: React.ReactNode,
@@ -18,7 +18,7 @@ const MyArticles: React.FC = () =>{
     const [article, setArticle]:any = useState([]);
 
     useEffect(()=>{
-            API.get('articles', {headers: {'Authorization': 'Token eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NzI0MDksInVzZXJuYW1lIjoiSGFtbW9vZGVoIiwiZXhwIjoxNTc3MzU1Njk0fQ.pYmfBfAqWq85ScKkqb615emcN33hRTv3KJPj0DgIrjg'}})
+            API.get('articles')
             .then((res: any) =>{
                
                     setArticle(res.data.articles);

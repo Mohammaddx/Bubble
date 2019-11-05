@@ -4,7 +4,7 @@ export const useStyle = makeStyles((theme: Theme)=>
     createStyles({
         root: {
             display: 'flex',
-            justifyContent: 'space-around',
+            justifyContent: 'space-between',
             fontSize: '13px'
 
         },

@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import {useStyle} from './style'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
-import API from '../../axios'
+import AXIOS from '../../utils/axios'
 
 export interface PopulerTagsInterface{
     children: React.ReactNode,
@@ -14,7 +14,7 @@ export interface PopulerTagsInterface{
     const [words , setWord]: any = useState([]);
 
     useEffect(() => {
-        API.get('tags').then((res: any)=>{
+        AXIOS.get('tags').then((res: any)=>{
             setWord(res.data.tags)
         })
         .catch(error =>{

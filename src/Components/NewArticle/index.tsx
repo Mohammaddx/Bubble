@@ -7,7 +7,8 @@ import Avatar from '@material-ui/core/Avatar'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
-import API from '../../axios'
+import AXIOS from '../../utils/axios'
+import utl from '../../utils/utils'
 
 export interface NewArticleInterface{
     children: React.ReactNode,
@@ -37,7 +38,7 @@ const NewArticle: React.FC = () =>{
     }
 
     const handleSubmit = () =>{
-        API.post('articles', {article: {title, desc, body, tagList}})
+        AXIOS.post('articles',{utl})
         .then(res =>{
             console.log(res);
             console.log(res.data);

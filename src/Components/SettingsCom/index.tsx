@@ -6,7 +6,8 @@ import TextField from '@material-ui/core/TextField'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
-import API from 'axios'
+import AXIOS from '../../utils/axios'
+import utl from '../../utils/utils'
 
 export interface SettingsInterface{
     children: React.ReactNode,
@@ -15,14 +16,16 @@ export interface SettingsInterface{
 
 const Settings: React.FC = () =>{
     
-const [url, setURL]: any = useState('');
+const [image, setImage]: any = useState('');
 const [username, setUsername]: any = useState('');
 const [bio, setBio]: any = useState('');
 const [email, setEmail]: any = useState('');
 const [password, setPassword]: any = useState('');
-
-const handleURL = (event: any) =>{
-    setURL(event.target.value);
+    
+    
+    
+const handleImage = (event: any) =>{
+    setImage(event.target.value);
 }
 
 const handleUsername = (event: any) =>{
@@ -42,10 +45,8 @@ const handlePassword = (event: any) =>{
 }
 
 const handleSubmit = () =>{
-    API.post('users', {user: {url, username, bio, email, password}})
-    .then(res =>{
-        console.log(res);
-        console.log(res.data);
+    AXIOS.put('user', {user: {email, bio, image}})
+    .then((res:any) =>{
     })
 }
     const classes = useStyle()
@@ -67,7 +68,7 @@ const handleSubmit = () =>{
                     name="url"
                     margin="normal"
                     variant="outlined"
-                    onChange={handleURL}
+                    onChange={handleImage}
                      />
                     </Grid>
 
@@ -125,7 +126,7 @@ const handleSubmit = () =>{
                      />
                     </Grid>
 
-                   <Button className={classes.button}>Update Settings</Button>
+                   <Button className={classes.button} type="submit">Update Settings</Button>
                 </Grid>
             </form>
             </ReactWOW>

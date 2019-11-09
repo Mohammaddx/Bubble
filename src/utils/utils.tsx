@@ -1,4 +1,4 @@
-const UserDeta = () => {
+const userData = () => {
     try {
       return JSON.parse(localStorage.getItem("userData") as string).user || {};
     } catch (error) {
@@ -11,6 +11,6 @@ const UserDeta = () => {
   };
   
   export default {
-    UserDeta,
+    userData,
     getToken
   };

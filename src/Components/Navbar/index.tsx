@@ -24,7 +24,7 @@ const NavBar: React.FC = () => {
               <li className={classes.itemList}><NavLink to="/Home" className={classes.link}><i className= {`${classes.iFont} fas fa-home`} ></i> Home</NavLink></li>
               <li className={classes.itemList}><NavLink to="/NewArticle" className={classes.link}><i className={`${classes.iFont} fas fa-newspaper`}></i> New Article</NavLink></li>
               <li className={classes.itemList}><NavLink to="/Settings" className={classes.link}><i className={`${classes.iFont} fas fa-cogs`}></i> Setting</NavLink></li>
-              <li className={classes.itemList}><NavLink to="/@:user" className={classes.link}><i className={`${classes.iFont} fas fa-user-circle`}></i> Profile</NavLink></li>
+              <li className={classes.itemList}><NavLink to="/profile" className={classes.link}><i className={`${classes.iFont} fas fa-user-circle`}></i> Profile</NavLink></li>
               <li className={classes.itemList}><NavLink to="/SignIn" className={classes.link}><i className={` ${classes.iFont} fas fa-sign-in-alt`}></i> Sign In</NavLink></li>
               <li className={classes.itemList}><NavLink to="/SignUp" className={classes.link}><i className={` ${classes.iFont} fas fa-user-plus`}></i> Sign Up</NavLink></li>
             </ul>

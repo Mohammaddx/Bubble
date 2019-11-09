@@ -8,11 +8,11 @@ import '../../animate.css'
 
 export interface ArticleInterface{
     children?: React.ReactNode,
+
 }
 const Article: React.FC<{image: string, title:string, body:string, tagList:string,
     createdAt:string, favorited:boolean,
-    favoritedCount:number, username:string }> = ({image, title, body, tagList, createdAt, favorited, favoritedCount, username}) =>{
-    
+    favoritesCount:number, username:string, slug:string }> = ({image, title,slug, body, tagList, createdAt, favorited, favoritesCount, username}) =>{
 
     const classes = useStyle()
     return(
@@ -23,13 +23,14 @@ const Article: React.FC<{image: string, title:string, body:string, tagList:strin
                                     image={image}
                                     createdat={createdAt}
                                     favorited={favorited}
-                                    favoritesCount={favoritedCount}
+                                    favoritesCount={favoritesCount}
+                                    slug={slug}
                                     /> </Grid>
 
                 <Grid item xs={12}> <ArticleBody title={title}
                                     body={body}/> </Grid>
 
-                <Grid item xs={12}> <span><NavLink to="/ReadMore" className={classes.link} >Read more...</NavLink></span></Grid>
+                <Grid item xs={12}> <span><NavLink to={`/ReadMore/@/${username}?slug=${slug}`} className={classes.link} >Read more...</NavLink></span></Grid>
             </Grid>
         </div>
     )

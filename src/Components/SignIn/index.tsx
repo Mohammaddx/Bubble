@@ -6,7 +6,7 @@ import Typography  from '@material-ui/core/Typography'
 import {useStyles} from './style'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
-import API from '../../utils/axios'
+import AXIOS from '../../utils/axios'
 
 export interface SignInInterface{
   children: React.ReactNode,
@@ -27,12 +27,10 @@ const SignIn: React.FC = ()=>{
 
     const handleSubmit = (event:any) =>{
       event.preventDefault()
-      console.log(email, password)
-      API.post('users/login',{user:{email, password}})
+      AXIOS.post('users/login',{user:{email, password}})
       .then((res: any) =>{
-      localStorage.setItem('Token', res.data.user.token);
-      console.log(res.data.user.token);
-      localStorage.setItem('userData', res.data.user);
+      console.log(res.data.user);
+      
       }).catch((error: any) =>{
         console.error(error);
       })

@@ -4,7 +4,7 @@ import TextFeild from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Typography  from '@material-ui/core/Typography'
 import {useStyles} from './style'
-import API from '../../utils/axios'
+import AXIOS from '../../utils/axios'
 import ReactWOW from 'react-wow'
 import '../../animate.css'
 
@@ -26,13 +26,16 @@ const SignUp: React.FC = ()=>{
   }
 
   const handlePassword = (event: any) => {
-    setPassword(event.target.value)
-    
+    setPassword(event.target.value) 
   }
 
-  const handleSubmit = async () =>{
-    API.post('users',{user: {username, email, password}})
+  const handleSubmit = async (event:any) =>{
+    event.preventDefault();
+    AXIOS.authPost('users', {user:{username, email, password}})
     .then(res =>{
+      localStorage.setItem('Token', res.data.user.token);
+      localStorage.setItem('userData', JSON.stringify(res.data));
+      
     }).catch((error: any)=>{
       console.log(error) 
     });

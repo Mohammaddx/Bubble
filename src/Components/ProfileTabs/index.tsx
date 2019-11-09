@@ -79,9 +79,6 @@ function a11yProps(index: any) {
     </div>
   );
 
-  ProfileTabs.defaultProps = {
-    children: true
-  }
 }
 
 export default ProfileTabs;

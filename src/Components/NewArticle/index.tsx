@@ -8,7 +8,6 @@ import ReactWOW from 'react-wow'
 import '../../animate.css'
 import {useStyle} from './style'
 import AXIOS from '../../utils/axios'
-import utl from '../../utils/utils'
 
 export interface NewArticleInterface{
     children: React.ReactNode,
@@ -21,6 +20,7 @@ const NewArticle: React.FC = () =>{
     const [body, setBody]: any = useState('');
     const [tagList, setTagList]: any = useState([])
 
+
     const handleTitle = (event: any) =>{
         setTitle(event.target.value);
     }
@@ -31,18 +31,20 @@ const NewArticle: React.FC = () =>{
 
     const handleBody = (event: any) =>{
         setBody(event.target.value)
+        
     }
 
     const handleTagList = (event: any) => {
         setTagList(event.target.value.split(" "));
     }
 
-    const handleSubmit = () =>{
-        AXIOS.post('articles',{utl})
-        .then(res =>{
-            console.log(res);
+    const handleSubmit = async () =>{
+        AXIOS.post('articles',{article: {title, desc, body, tagList}})
+        .then((res:any) => {
             console.log(res.data);
-        }).catch((error: any) =>{
+        }
+        )
+        .catch((error: any) =>{
             console.error(error);
         })
     }
@@ -66,6 +68,7 @@ const NewArticle: React.FC = () =>{
                     name="ArticleTitle"
                     margin="normal"
                     variant="outlined"
+                    required
                     onChange={handleTitle}
                      /></ReactWOW>
                 </Grid>
@@ -80,6 +83,7 @@ const NewArticle: React.FC = () =>{
                     name="about"
                     margin="normal"
                     variant="outlined"
+                    required
                     onChange={handleDesc}
                      /></ReactWOW>
                 </Grid>
@@ -96,6 +100,7 @@ const NewArticle: React.FC = () =>{
                     variant="outlined"
                     rowsMax={10}
                     multiline={true}
+                    required
                     onChange={handleBody}
                      /></ReactWOW>
                 </Grid>
@@ -114,7 +119,7 @@ const NewArticle: React.FC = () =>{
                      /></ReactWOW>
                 </Grid>
 
-                <Button className={classes.button}>Publish Article</Button>
+                <Button className={classes.button} type="submit">Publish Article</Button>
                 </form>
 
 
@@ -122,9 +127,6 @@ const NewArticle: React.FC = () =>{
         </div>
     )
 
-    NewArticle.defaultProps = {
-        children: null
-    }
 }
 
 export default NewArticle;

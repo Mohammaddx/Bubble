@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Article from '../Article/index'
-import API from '../../utils/axios'
+import AXIOS from '../../utils/axios'
 
 export interface HomeGlobalFeedInterface{
     children: React.ReactNode,
@@ -10,19 +10,22 @@ export interface HomeGlobalFeedInterface{
     tagList: string,
     createdAt: string,
     favorited: boolean,
-    favoritedCount: number,
+    favoritesCount: number,
     username: string
 }
 const HomeGlobalFeed: React.FC = ()=>{
     const [article, setArticle]: any = useState([]);
 
     useEffect(()=>{
-        API.get('articles',)
+        AXIOS.get('articles/feed')
         .then((res: any) =>{
-           
-                setArticle(res.data.articles);
-        
-           
+            if(res.data.articles.length == 0){
+                alert("Sorry, we don't have a data now in Global Feed!")
+            }else{
+                if(res.data.articles.author.following == true){
+                    setArticle(res.data.articles)
+                }
+            }
         }).catch((error: any) =>{
             console.log(error);
             
@@ -32,8 +35,8 @@ const HomeGlobalFeed: React.FC = ()=>{
  
 
     const articleEL = article.map((el: any) =>(
-        <Article key={el} image={el.author.image} title={el.title} body={el.body} tagList={el.tagList} 
-        createdAt={el.createdAt} favorited={el.favorited} favoritedCount={el.favoritedCount} username={el.author.username}/>
+        <Article key={el} slug={el.slug} image={el.author.image} title={el.title} body={el.body} tagList={el.tagList} 
+        createdAt={el.createdAt} favorited={el.favorited} favoritesCount={el.favoritesCount} username={el.author.username}/>
   ))
     
     

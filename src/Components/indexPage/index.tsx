@@ -27,7 +27,7 @@ const IndexPage: React.FC = ()=>{
                     <Route path="/SignIn" component={SignIn}/>
                     <Route path="/NewArticle" component={NewArticle}/>
                     <Route path="/Settings" component={Settings}/>
-                    <Route path="/@:user" component={Profile}/>
+                    <Route path="/profile" component={Profile}/>
                     <Route path="/ReadMore" component={ReadMore}/>
                 </Switch>
        </BrowserRouter>

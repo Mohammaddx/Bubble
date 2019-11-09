@@ -1,47 +1,55 @@
 import React, {useState, useEffect} from 'react';
-import Pic from './me.jpg'
 import Button from '@material-ui/core/Button'
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import {useStyle} from './style'
-import API from '../../utils/axios'
+import AXIOS from '../../utils/axios'
 
 export interface ReadMoreInfoProfileInterface{
     children: React.ReactNode
 }
 
-const ReadMoreInfoProfile: React.FC = ()=>{
-    const {follow, setFollow}: any = useState(false);
-    const {wordShows, setWordShows}: any = useState('');
-  
-         let bool:boolean = false;
+const ReadMoreInfoProfile: React.FC<{username: string, image: string, following: boolean, text: string, classname:string, title:string, createdAt: string}> = ({username, image, following, text, classname, title, createdAt})=>{
+   const [isFollow, setIsFollow]: any = useState('');
+   const [classnamei, setClassnamei]: any = useState('');
 
-        const followOrNot = () =>{
-            if(bool == false){
-                setFollow(true);
-                setWordShows('-Unfollow')
-                bool = true;
-            }else if (bool == true){
-                setFollow(false);
-                setWordShows('+Follow')
-                bool = false;
-            }
+    const handleFollow = (event: any) =>{
+        if(following == false){
+            AXIOS.post(`profiles/${username}/follow`, {profile: {following: true}})
+        .then((res: any) =>{
+            console.log(res.data);
+            setIsFollow('Unfollow');
+            setClassnamei('fas fa-minus-circle');
+        })
+        .catch((error: any) => console.log(error)
+        )
+        }else if(following == true){
+            AXIOS.DELETE(`profiles/${username}/follow`)
+            .then((res: any) =>{
+                console.log(res.data);
+                setIsFollow('Follow');
+                setClassnamei('fas fa-plus-circle');
+            })
+            .catch((error: any) =>{
+                console.log(error);
+                
+            })
         }
+        
 
-       
-    
+    }
 
     const classes = useStyle()
     return(
-        <div className={classes.Profile_info} >
+        <div className={classes.Profile_info}>
             <div className={classes.root}>
             <div className={classes.root}>
-                <img src={Pic} alt="pic" className={classes.img}/>
+                <img src={image} alt="pic" className={classes.img}/>
                 <div className="text_info">
-                    <h4 style={{color:"#fff"}}>Mohammad Ahmad</h4>
-                    <span style={{color: '#fff'}}><i className="fas fa-history"></i> Septemper 12, 2019</span>
+                    <h4 style={{color:"#fff"}}>{username}</h4>
+                    <span style={{color: '#fff'}}><i className="fas fa-history"></i> {createdAt}</span>
                 </div>
             </div>
-            <Button variant='contained' color='primary' size='small' className={classes.button} onClick={followOrNot}>{wordShows}</Button> 
+            <Button variant='contained' color='primary' size='small' className={classes.button} onClick={handleFollow}><i className={classnamei}></i> {isFollow} {username}</Button> 
             <Button variant='contained' color='secondary' size='small' className={classes.button}><FavoriteIcon /> unfavorite Articles (2)</Button>
             </div>
         </div>

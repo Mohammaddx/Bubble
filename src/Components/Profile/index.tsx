@@ -7,6 +7,7 @@ import '../../animate.css'
 import {useStyle} from './style'
 import AXIOS from '../../utils/axios'
 import utl from '../../utils/utils'
+import {NavLink} from 'react-router-dom'
 
 export interface ProfileInterface{
     children: React.ReactNode
@@ -18,13 +19,18 @@ const Profile: React.FC = ()=>{
     const [bio, setBio]: any = useState(''); //not useing here now
     const [following, setFellowing]: any = useState(false) //not useing here now
     
+    //for button 
+    const [text, setText]: any = useState('');
+    const [classname, setClassname]:any = useState('');
+
     useEffect(() =>{
-        console.log('baby');
-        
-            AXIOS.get(`profiles/${utl.UserDeta().username}`)
+        let path = window.location.pathname;
+        let filename = path.substring(path.indexOf('@')+2);
+        if(path.indexOf('@') !== 9){
+            setText('Edit Profile Settings')
+            setClassname('fas fa-cogs')
+            AXIOS.get(`profiles/${utl.userData().username}`)
             .then(res =>{
-                console.log(res);
-                console.log(res.data);
                 setImage(res.data.profile.image);
                 setUsername(res.data.profile.username);
                 setBio(res.data.profile.bio);
@@ -34,6 +40,22 @@ const Profile: React.FC = ()=>{
                 console.error(err);
                 
             })
+        } else if(path.indexOf('@') === 9){
+            setText(`Follow ${filename}`);
+            setClassname('fas fa-plus-circle')
+            AXIOS.get(`profiles/${filename}`)
+            .then(res =>{
+                setImage(res.data.profile.image);
+                setUsername(res.data.profile.username);
+                setBio(res.data.profile.bio);
+                setFellowing(res.data.profile.following);
+            })
+            .catch(err =>{
+                console.error(err);
+                
+            })
+        }
+         
         
     }, [])
     
@@ -54,7 +76,7 @@ const Profile: React.FC = ()=>{
                         </ReactWOW>
 
                         <ReactWOW animation="fadeIn">
-                        <Button variant="contained" color="secondary" size="small" className={classes.Button}><i className="fas fa-cogs" style={{padding: '5px'}}></i> Edit Profile Settings</Button>
+                        <NavLink to="/Settings" style={{textDecoration: 'none'}}><Button variant="contained" color="secondary" size="small" className={classes.Button}><i className={classname} style={{padding: '5px'}}></i> {text}</Button></NavLink>
                         </ReactWOW>
                     </div>
                 </header>

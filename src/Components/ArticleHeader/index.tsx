@@ -21,12 +21,12 @@ const ArticleHeader: React.FC<{username: string, slug:string, image: string, cre
 
     const isFavorited = (event: any) =>{
         if(favorited == false){
-            AXIOS.post(`articles:${slug}/favorite`, {article: {favorited: true}})
+            AXIOS.post(`articles/${slug}/favorite`, {article: {favorited: true}})
             .then((res: any) =>{
                 setVariant('contained');
             })
         }else if (favorited == true){
-            AXIOS.DELETE(`articles:${slug}/favorite`)
+            AXIOS.DELETE(`articles/${slug}/favorite`)
             .then((res: any) =>{
                 setVariant('outlined')
             })

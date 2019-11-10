@@ -1,133 +1,131 @@
-import React, {useState} from 'react';
-import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import Avatar from '@material-ui/core/Avatar'
-import ReactWOW from 'react-wow'
-import '../../animate.css'
-import {useStyle} from './style'
-import AXIOS from '../../utils/axios'
+import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import Avatar from "@material-ui/core/Avatar";
+import ReactWOW from "react-wow";
+import "../../animate.css";
+import { useStyle } from "./style";
+import AXIOS from "../../utils/axios";
 
-export interface NewArticleInterface{
-    children: React.ReactNode,
+export interface NewArticleInterface {
+  children: React.ReactNode;
 }
 
-const NewArticle: React.FC = () =>{
+const NewArticle: React.FC = () => {
+  const [title, setTitle]: any = useState("");
+  const [description, setDesc]: any = useState("");
+  const [body, setBody]: any = useState("");
+  const [tagList, setTagList]: any = useState([]);
 
-    const [title, setTitle]: any = useState('');
-    const [description, setDesc]: any = useState('');
-    const [body, setBody]: any = useState('');
-    const [tagList, setTagList]: any = useState([])
+  const handleTitle = (event: any) => {
+    setTitle(event.target.value);
+  };
 
+  const handleDesc = (event: any) => {
+    setDesc(event.target.value);
+  };
 
-    const handleTitle = (event: any) =>{
-        setTitle(event.target.value);
-    }
+  const handleBody = (event: any) => {
+    setBody(event.target.value);
+  };
 
-    const handleDesc = (event: any) =>{
-        setDesc(event.target.value)
-    }
+  const handleTagList = (event: any) => {
+    setTagList(event.target.value.split(" "));
+  };
 
-    const handleBody = (event: any) =>{
-        setBody(event.target.value)
-        
-    }
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+    AXIOS.post("articles", { article: { title, description, body, tagList } })
+      .then((res: any) => {
+        console.log(res.data);
+      })
+      .catch((error: any) => {
+        console.error(error);
+      });
+  };
 
-    const handleTagList = (event: any) => {
-        setTagList(event.target.value.split(" "));
-    }
+  const classes = useStyle();
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
+          <Avatar className={classes.avatar}>
+            <AssignmentIcon className={classes.icon} fontSize="large" />
+          </Avatar>
+          <Grid item xs={12}>
+            <ReactWOW animation="fadeInLeftBig">
+              <TextField
+                id="outlined-email-input"
+                label="Article Title"
+                className={classes.textField}
+                type="text"
+                name="ArticleTitle"
+                margin="normal"
+                variant="outlined"
+                required
+                onChange={handleTitle}
+              />
+            </ReactWOW>
+          </Grid>
 
-    const handleSubmit = async (event: any) =>{
-        event.preventDefault();
-        AXIOS.post('articles',{article: {title, description, body, tagList}})
-        .then((res:any) => {
-            console.log(res.data);
-        }
-        )
-        .catch((error: any) =>{
-            console.error(error);
-        })
-    }
+          <Grid item xs={12}>
+            <ReactWOW animation="fadeInRightBig">
+              <TextField
+                id="outlined-email-input"
+                label="What's this article about?"
+                className={classes.textField}
+                type="text"
+                name="about"
+                margin="normal"
+                variant="outlined"
+                required
+                onChange={handleDesc}
+              />
+            </ReactWOW>
+          </Grid>
 
-    const classes = useStyle();
-    return(
+          <Grid item xs={12}>
+            <ReactWOW animation="fadeInUp">
+              <TextField
+                id="outlined-email-input"
+                label="Write your article (in markdown)"
+                className={classes.textField}
+                type="text"
+                name="writeArticle"
+                margin="normal"
+                variant="outlined"
+                rowsMax={10}
+                multiline={true}
+                required
+                onChange={handleBody}
+              />
+            </ReactWOW>
+          </Grid>
 
-        <div className={classes.root}>
-            <Grid container spacing={2}>
-                <form style={{width: '100%'}} onSubmit={handleSubmit}>
-                <Avatar className={classes.avatar}>
-                    <AssignmentIcon className={classes.icon} fontSize='large'/>
-                </Avatar> 
-                <Grid item xs={12}>
-                <ReactWOW animation="fadeInLeftBig">
-                <TextField
-                    id="outlined-email-input"
-                    label="Article Title"
-                    className={classes.textField}
-                    type="text"
-                    name="ArticleTitle"
-                    margin="normal"
-                    variant="outlined"
-                    required
-                    onChange={handleTitle}
-                     /></ReactWOW>
-                </Grid>
+          <Grid item xs={12}>
+            <ReactWOW animation="fadeIn">
+              <TextField
+                id="outlined-email-input"
+                label="Enter Tags"
+                className={classes.textField}
+                type="text"
+                name="EnterTags"
+                margin="normal"
+                variant="outlined"
+                onChange={handleTagList}
+              />
+            </ReactWOW>
+          </Grid>
 
-                <Grid item xs={12}>
-                <ReactWOW animation="fadeInRightBig">
-                <TextField
-                    id="outlined-email-input"
-                    label="What's this article about?"
-                    className={classes.textField}
-                    type="text"
-                    name="about"
-                    margin="normal"
-                    variant="outlined"
-                    required
-                    onChange={handleDesc}
-                     /></ReactWOW>
-                </Grid>
-
-                <Grid item xs={12}>
-                <ReactWOW animation="fadeInUp">
-                <TextField
-                    id="outlined-email-input"
-                    label="Write your article (in markdown)"
-                    className={classes.textField}
-                    type="text"
-                    name="writeArticle"
-                    margin="normal"
-                    variant="outlined"
-                    rowsMax={10}
-                    multiline={true}
-                    required
-                    onChange={handleBody}
-                     /></ReactWOW>
-                </Grid>
-
-                <Grid item xs={12}>
-                <ReactWOW animation="fadeIn">
-                <TextField
-                    id="outlined-email-input"
-                    label="Enter Tags"
-                    className={classes.textField}
-                    type="text"
-                    name="EnterTags"
-                    margin="normal"
-                    variant="outlined"
-                    onChange={handleTagList}
-                     /></ReactWOW>
-                </Grid>
-
-                <Button className={classes.button} type="submit">Publish Article</Button>
-                </form>
-
-
-             </Grid>
-        </div>
-    )
-
-}
+          <Button className={classes.button} type="submit">
+            Publish Article
+          </Button>
+        </form>
+      </Grid>
+    </div>
+  );
+};
 
 export default NewArticle;

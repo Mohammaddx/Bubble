@@ -34,6 +34,5 @@ componentStory.add("Read More Comment Component", ()=>(
             <p>This component is for the form you write your comment to send it to the owner post
                 you comment on it  </p>
         </header>
-        <ReadMoreComment />
     </div>
 ))

@@ -36,6 +36,5 @@ componentStory.add("Read More Info Profile Component", ()=>(
                 unfavioret button 
             </p>
         </header>
-    <ReadMoreInfoProfile />
     </div>
 ))

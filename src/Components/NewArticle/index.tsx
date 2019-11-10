@@ -16,7 +16,7 @@ export interface NewArticleInterface{
 const NewArticle: React.FC = () =>{
 
     const [title, setTitle]: any = useState('');
-    const [desc, setDesc]: any = useState('');
+    const [description, setDesc]: any = useState('');
     const [body, setBody]: any = useState('');
     const [tagList, setTagList]: any = useState([])
 
@@ -38,8 +38,9 @@ const NewArticle: React.FC = () =>{
         setTagList(event.target.value.split(" "));
     }
 
-    const handleSubmit = async () =>{
-        AXIOS.post('articles',{article: {title, desc, body, tagList}})
+    const handleSubmit = async (event: any) =>{
+        event.preventDefault();
+        AXIOS.post('articles',{article: {title, description, body, tagList}})
         .then((res:any) => {
             console.log(res.data);
         }

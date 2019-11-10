@@ -35,7 +35,7 @@ componentStory.add("Comment List Componenet", ()=>(
             <p>This Component containes all comment you comment it on 
                 a post.
             </p>
-            <CommentList />
+            
         </header>
     </div>
 ))

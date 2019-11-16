@@ -16,7 +16,7 @@ const SignIn: React.FC = () => {
   const classes = useStyles();
   const [email, setEmail]: any = useState("");
   const [password, setPassword]: any = useState("");
-
+  const [error, setError]: any = useState("");
   const handleEmail = (event: any) => {
     setEmail(event.target.value);
   };
@@ -32,7 +32,11 @@ const SignIn: React.FC = () => {
         console.log(res.data.user);
       })
       .catch((error: any) => {
-        console.error(error);
+        setError(
+          "* Email or Password" +
+            " " +
+            error.response.data.errors["email or password"][0]
+        );
       });
   };
 
@@ -44,7 +48,10 @@ const SignIn: React.FC = () => {
             <Typography variant="h5">Sign In</Typography>
           </Grid>
 
-          <form className={classes.form} onSubmit={handleSubmit}>
+          <form className={classes.form} onSubmit={handleSubmit} action="/Home">
+            <Typography component="span" style={{ color: "red" }}>
+              {error}
+            </Typography>
             <Grid item xs={12}>
               <TextFeild
                 className={classes.textFeild}

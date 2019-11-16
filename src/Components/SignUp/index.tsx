@@ -113,9 +113,6 @@ const SignUp: React.FC = () => {
       </ReactWOW>
     </div>
   );
-  SignUp.defaultProps = {
-    children: null
-  };
 };
 
 export default SignUp;

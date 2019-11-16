@@ -16,6 +16,7 @@ const SignUp: React.FC = () => {
   const [username, setUsername]: any = useState("");
   const [email, setEmail]: any = useState("");
   const [password, setPassword]: any = useState("");
+  const [error, setError]: any = useState([]);
 
   const handleUsername = (event: any) => {
     setUsername(event.target.value);
@@ -36,8 +37,18 @@ const SignUp: React.FC = () => {
         localStorage.setItem("Token", res.data.user.token);
         localStorage.setItem("userData", JSON.stringify(res.data));
       })
-      .catch((error: any) => {
-        console.log(error);
+      .catch((err: any) => {
+        let arr: any = [];
+        if (err.response.data.errors.username != undefined) {
+          arr.push(`* username ${err.response.data.errors.username[0]}`);
+        }
+        if (err.response.data.errors.email != undefined) {
+          arr.push(`* email ${err.response.data.errors.email[0]}`);
+        }
+        if (err.response.data.errors.password != undefined) {
+          arr.push(`* password ${err.response.data.errors.password[0]}`);
+        }
+        setError(arr);
       });
   };
 
@@ -50,6 +61,14 @@ const SignUp: React.FC = () => {
             <Typography variant="h5">Sign Up</Typography>
           </Grid>
           <form className={classes.form} onSubmit={handleSubmit}>
+            <div>
+              {error.map((el: any) => (
+                <Typography component="p" key={el} style={{ color: "red" }}>
+                  {el}
+                </Typography>
+              ))}
+            </div>
+
             <Grid item xs={12}>
               <TextFeild
                 className={classes.textFeild}

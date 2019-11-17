@@ -16,9 +16,7 @@ const ArticleBody: React.FC<{ title: string; body: string }> = ({
       <Typography component="h5" variant="h5" style={{ fontWeight: "bold" }}>
         {title}
       </Typography>
-      <Typography component="p" variant="p">
-        {body}
-      </Typography>
+      <p>{body}</p>
     </div>
   );
 };

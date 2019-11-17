@@ -63,9 +63,9 @@ const SignUp: React.FC = () => {
           <form className={classes.form} onSubmit={handleSubmit}>
             <div>
               {error.map((el: any) => (
-                <Typography component="p" key={el} style={{ color: "red" }}>
+                <p key={el} style={{ color: "red" }}>
                   {el}
-                </Typography>
+                </p>
               ))}
             </div>
 

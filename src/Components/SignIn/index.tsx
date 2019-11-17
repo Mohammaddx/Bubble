@@ -49,9 +49,7 @@ const SignIn: React.FC = () => {
           </Grid>
 
           <form className={classes.form} onSubmit={handleSubmit} action="/Home">
-            <Typography component="span" style={{ color: "red" }}>
-              {error}
-            </Typography>
+            <p style={{ color: "red" }}>{error}</p>
             <Grid item xs={12}>
               <TextFeild
                 className={classes.textFeild}

@@ -7,7 +7,7 @@ export interface HomeYourFeedInterface {
   image: string;
   title: string;
   body: string;
-  tagList: string;
+  tagList: string[];
   createdAt: string;
   favorited: boolean;
   favoritesCount: number;
@@ -21,10 +21,9 @@ const HomeYourFeed: React.FC = () => {
   useEffect(() => {
     console.log("bbb");
 
-    AXIOS.get("articles")
+    AXIOS.get("articles/feed")
       .then((res: any) => {
         setArticle(res.data.articles);
-        console.log(res.data.articles);
       })
       .catch((error: any) => {
         console.log(error);

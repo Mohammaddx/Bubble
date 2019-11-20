@@ -18,31 +18,18 @@ const ReadMoreInfoProfile: React.FC<{
   title: string;
   createdAt: string;
 }> = ({ username, image, following, text, classname, title, createdAt }) => {
-  const [isFollow, setIsFollow]: any = useState("");
-  const [classnamei, setClassnamei]: any = useState("");
-
   const handleFollow = (event: any) => {
-    if (following == false) {
-      AXIOS.post(`profiles/${username}/follow`, {
-        profile: { following: true }
-      })
-        .then((res: any) => {
-          console.log(res.data);
-          setIsFollow("Unfollow");
-          setClassnamei("fas fa-minus-circle");
+    following == false
+      ? AXIOS.post(`profiles/${username}/follow`, {
+          profile: { following: true }
         })
-        .catch((error: any) => console.log(error));
-    } else if (following == true) {
-      AXIOS.DELETE(`profiles/${username}/follow`)
-        .then((res: any) => {
-          console.log(res.data);
-          setIsFollow("Follow");
-          setClassnamei("fas fa-plus-circle");
-        })
-        .catch((error: any) => {
-          console.log(error);
-        });
-    }
+          .then((res: any) => {})
+          .catch((error: any) => console.log(error))
+      : AXIOS.DELETE(`profiles/${username}/follow`)
+          .then((res: any) => {})
+          .catch((error: any) => {
+            console.log(error);
+          });
   };
 
   const classes = useStyle();
@@ -67,7 +54,7 @@ const ReadMoreInfoProfile: React.FC<{
           className={classes.button}
           onClick={handleFollow}
         >
-          <i className={classnamei}></i> {isFollow} {username}
+          {following == true ? "UnFollow" : "Follow"} {username}
         </Button>
         <Button
           variant="contained"

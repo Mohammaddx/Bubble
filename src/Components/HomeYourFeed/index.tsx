@@ -17,12 +17,14 @@ export interface HomeYourFeedInterface {
 
 const HomeYourFeed: React.FC = () => {
   const [article, setArticle]: any = useState([]);
+  const [isEmpty, setIsEmpty]: any = useState();
 
   useEffect(() => {
     console.log("bbb");
 
     AXIOS.get("articles/feed")
       .then((res: any) => {
+        setIsEmpty(res.data.articles.length);
         setArticle(res.data.articles);
       })
       .catch((error: any) => {
@@ -30,22 +32,25 @@ const HomeYourFeed: React.FC = () => {
       });
   }, []);
 
-  const articleEL = article.map((el: any) => (
-    <Article
-      key={el}
-      slug={el.slug}
-      image={el.author.image}
-      title={el.title}
-      body={el.body}
-      tagList={el.tagList}
-      createdAt={el.createdAt}
-      favorited={el.favorited}
-      favoritesCount={el.favoritesCount}
-      username={el.author.username}
-    />
-  ));
-
-  return <div>{articleEL}</div>;
+  return (
+    <div>
+      <p>{isEmpty == 0 ? "Sorry, No articles yet..." : ""}</p>
+      {article.map((el: any) => (
+        <Article
+          key={el}
+          slug={el.slug}
+          image={el.author.image}
+          title={el.title}
+          body={el.body}
+          tagList={el.tagList}
+          createdAt={el.createdAt}
+          favorited={el.favorited}
+          favoritesCount={el.favoritesCount}
+          username={el.author.username}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default HomeYourFeed;

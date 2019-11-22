@@ -26,14 +26,7 @@ const PopulerTags = (props: any) => {
   }, []);
   const PopulerTagsData = words.map((wordItem: any) => (
     <Grid item xs={12} lg={3} className={classes.tag} key={wordItem}>
-      <NavLink
-        style={{
-          color: "#fff",
-          textDecoration: "none"
-        }}
-      >
-        {wordItem}
-      </NavLink>
+      {wordItem}
     </Grid>
   ));
 

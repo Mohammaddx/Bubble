@@ -7,6 +7,7 @@ export const useStyle = makeStyles(() =>
       color: "#fff",
       padding: "10px 20xp",
       borderRadius: "20px",
+      cursor: "pointer",
       margin: "10px 0",
       "&:hover": { boxShadow: "1px 1px 10px 1px dodgerblue" }
     },

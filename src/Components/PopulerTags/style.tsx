@@ -5,7 +5,7 @@ export const useStyle = makeStyles(() =>
     tag: {
       backgroundColor: "dodgerblue",
       color: "#fff",
-      padding: "10px 20xp",
+      padding: "10px 20px",
       borderRadius: "20px",
       cursor: "pointer",
       margin: "10px 0",

@@ -1,31 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { useStyle } from "./style";
-import { NavLink } from "react-router-dom";
 import ReactWOW from "react-wow";
 import "../../animate.css";
 import AXIOS from "../../utils/axios";
 
 export interface PopulerTagsInterface {
   children: React.ReactNode;
+  handleCallback?: any | (() => any);
 }
 
-const PopulerTags = (props: any) => {
+const PopulerTags: React.FC<{
+  handleCallback: any;
+}> = ({ handleCallback }) => {
   const classes = useStyle();
   const [words, setWord]: any = useState([]);
 
   useEffect(() => {
-    AXIOS.get("tags")
-      .then((res: any) => {
-        setWord(res.data.tags);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    const fetchData = () => {
+      AXIOS.get("tags")
+        .then((res: any) => {
+          setWord(res.data.tags);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    };
+
+    fetchData();
   }, []);
-  const PopulerTagsData = words.map((wordItem: any) => (
-    <Grid item xs={12} lg={3} className={classes.tag} key={wordItem}>
+
+  const PopulerTagsData = words.map((wordItem: string) => (
+    <Grid
+      item
+      xs={12}
+      lg={3}
+      key={wordItem}
+      className={classes.tag}
+      onClick={() => {
+        handleCallback(wordItem);
+      }}
+    >
       {wordItem}
     </Grid>
   ));

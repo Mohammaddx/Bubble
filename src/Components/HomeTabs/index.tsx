@@ -1,12 +1,12 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import HomeGlobalFeed from '../HomeGlobalFeed/index'
-import HomeYourFeed from '../HomeYourFeed/index'
-import {useStyles}  from './style'
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import HomeGlobalFeed from "../HomeGlobalFeed/index";
+import HomeYourFeed from "../HomeYourFeed/index";
+import { useStyles } from "./style";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -15,7 +15,7 @@ interface TabPanelProps {
 }
 
 export interface HomeTabsInterface {
-  children: React.ReactNode,
+  children: React.ReactNode;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -38,12 +38,11 @@ function TabPanel(props: TabPanelProps) {
 function a11yProps(index: any) {
   return {
     id: `scrollable-force-tab-${index}`,
-    'aria-controls': `scrollable-force-tabpanel-${index}`,
+    "aria-controls": `scrollable-force-tabpanel-${index}`
   };
 }
 
-
- const HomeTabs: React.FC =()=> {
+const HomeTabs: React.FC = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -53,14 +52,14 @@ function a11yProps(index: any) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.AppBar} >
+      <AppBar position="static" className={classes.AppBar}>
         <Tabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons="on"
-          indicatorColor='primary'
-          textColor='primary'
+          indicatorColor="primary"
+          textColor="primary"
           aria-label="scrollable force tabs example"
         >
           <Tab label="Your Feed" {...a11yProps(0)} />
@@ -78,7 +77,7 @@ function a11yProps(index: any) {
 
   HomeTabs.defaultProps = {
     children: true
-  }
-}
+  };
+};
 
 export default HomeTabs;

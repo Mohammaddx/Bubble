@@ -17,7 +17,6 @@ interface TabPanelProps {
 
 export interface HomeTabsInterface {
   children?: React.ReactNode;
-  tag: any;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -44,7 +43,7 @@ function a11yProps(index: any) {
   };
 }
 
-const HomeTabs: React.FC<{ tag: any }> = tag => {
+const HomeTabs: React.FC = () => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -66,7 +65,7 @@ const HomeTabs: React.FC<{ tag: any }> = tag => {
         >
           <Tab label="Your Feed" {...a11yProps(0)} />
           <Tab label="Global Feed" {...a11yProps(1)} />
-          <Tab label={tag.tag != "" ? `#${tag.tag}` : ""} {...a11yProps(1)} />
+          <Tab label={""} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -76,7 +75,7 @@ const HomeTabs: React.FC<{ tag: any }> = tag => {
         <HomeGlobalFeed />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ArticlesByTags tagName={tag.tag} />
+        <ArticlesByTags />
       </TabPanel>
     </div>
   );

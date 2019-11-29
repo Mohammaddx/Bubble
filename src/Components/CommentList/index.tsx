@@ -9,9 +9,9 @@ const CommentList: React.FC<{ slug: string }> = ({ slug }) => {
   const [comment, setComment]: any = useState([]);
 
   useEffect(() => {
-    AXIOS.get(`rticles/${slug}/comments`)
+    AXIOS.get(`articles/${slug}/comments`)
       .then(res => {
-        console.log(res.data);
+        setComment(res.data.comments);
       })
       .catch(error => console.log(error));
   }, []);

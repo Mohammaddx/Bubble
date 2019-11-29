@@ -19,6 +19,12 @@ export interface ReadMore {
 
 const ReadMore: React.FC = () => {
   const classes = useStyle();
+
+  let path = window.location.pathname;
+  let pathSearch = window.location.search;
+  let filename = path.substring(path.indexOf("@") + 2);
+  let slugname = pathSearch.substring(pathSearch.indexOf("=") + 1);
+
   //for profile
   const [image, setImage]: any = useState("");
   const [username, setUsername]: any = useState("");
@@ -28,18 +34,13 @@ const ReadMore: React.FC = () => {
   const [text, setText]: any = useState("");
   const [classname, setClassname]: any = useState("");
   //for article
-  const [slug, setSlug]: any = useState("");
+  const [slug, setSlug]: any = useState(slugname);
   const [title, setTitle]: any = useState("");
   const [createdAt, setCreatedAt]: any = useState("");
   const [body, setBody]: any = useState("");
   const [tagList, setTagList]: any = useState([]);
 
   useEffect(() => {
-    let path = window.location.pathname;
-    let pathSearch = window.location.search;
-    let filename = path.substring(path.indexOf("@") + 2);
-    let slugname = pathSearch.substring(pathSearch.indexOf("=") + 1);
-
     AXIOS.get(`profiles/${filename}`)
       .then(res => {
         setImage(res.data.profile.image);
@@ -51,14 +52,14 @@ const ReadMore: React.FC = () => {
         console.error(err);
       });
 
-    AXIOS.get(`articles/${slugname}`).then((res: any) => {
-      setSlug(slugname);
+    AXIOS.get(`articles/${slug}`).then((res: any) => {
       setTitle(res.data.article.title);
       setCreatedAt(res.data.article.createdAt);
       setBody(res.data.article.body);
       setTagList(res.data.article.tagList);
     });
   }, []);
+
   return (
     <div>
       <header className={classes.header}>

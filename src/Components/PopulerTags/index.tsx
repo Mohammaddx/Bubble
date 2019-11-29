@@ -8,12 +8,9 @@ import AXIOS from "../../utils/axios";
 
 export interface PopulerTagsInterface {
   children: React.ReactNode;
-  handleCallback?: any | (() => any);
 }
 
-const PopulerTags: React.FC<{
-  handleCallback: any;
-}> = ({ handleCallback }) => {
+const PopulerTags: React.FC = () => {
   const classes = useStyle();
   const [words, setWord]: any = useState([]);
 
@@ -38,9 +35,7 @@ const PopulerTags: React.FC<{
       lg={3}
       key={wordItem}
       className={classes.tag}
-      onClick={() => {
-        handleCallback(wordItem);
-      }}
+      onClick={() => {}}
     >
       {wordItem}
     </Grid>

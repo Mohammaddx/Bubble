@@ -17,6 +17,8 @@ interface TabPanelProps {
 
 export interface HomeTabsInterface {
   children?: React.ReactNode;
+  tagName: string;
+  articleDataForTag: any[];
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -43,10 +45,12 @@ function a11yProps(index: any) {
   };
 }
 
-const HomeTabs: React.FC = () => {
+const HomeTabs: React.FC<{ tagName: string; articleDataForTag: any[] }> = ({
+  tagName,
+  articleDataForTag
+}) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-
   function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
     setValue(newValue);
   }
@@ -65,7 +69,7 @@ const HomeTabs: React.FC = () => {
         >
           <Tab label="Your Feed" {...a11yProps(0)} />
           <Tab label="Global Feed" {...a11yProps(1)} />
-          <Tab label={""} {...a11yProps(1)} />
+          <Tab label={tagName == "" ? "" : `#${tagName}`} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -75,7 +79,7 @@ const HomeTabs: React.FC = () => {
         <HomeGlobalFeed />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <ArticlesByTags />
+        <ArticlesByTags articleDataForTag={articleDataForTag} />
       </TabPanel>
     </div>
   );

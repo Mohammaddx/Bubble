@@ -13,10 +13,18 @@ export interface ReadMore {
   following: boolean;
   text: string;
   classname: string;
+  body: string;
+  tagList: string[];
 }
 
 const ReadMore: React.FC = () => {
   const classes = useStyle();
+
+  let path = window.location.pathname;
+  let pathSearch = window.location.search;
+  let filename = path.substring(path.indexOf("@") + 2);
+  let slugname = pathSearch.substring(pathSearch.indexOf("=") + 1);
+
   //for profile
   const [image, setImage]: any = useState("");
   const [username, setUsername]: any = useState("");
@@ -26,21 +34,16 @@ const ReadMore: React.FC = () => {
   const [text, setText]: any = useState("");
   const [classname, setClassname]: any = useState("");
   //for article
-  const [slug, setSlug]: any = useState("");
+  const [slug, setSlug]: any = useState(slugname);
   const [title, setTitle]: any = useState("");
   const [createdAt, setCreatedAt]: any = useState("");
+  const [body, setBody]: any = useState("");
+  const [tagList, setTagList]: any = useState([]);
 
   useEffect(() => {
-    let path = window.location.pathname;
-    let filename = path.substring(path.indexOf("@") + 2);
-    let slugname = path.substring(path.indexOf("?") + 2);
-    console.log(filename);
-    console.log(slugname);
-
     AXIOS.get(`profiles/${filename}`)
       .then(res => {
         setImage(res.data.profile.image);
-        console.log(res.data.profile.username);
         setUsername(res.data.profile.username);
         setBio(res.data.profile.bio);
         setFellowing(res.data.profile.following);
@@ -49,17 +52,19 @@ const ReadMore: React.FC = () => {
         console.error(err);
       });
 
-    AXIOS.get(`articles/${slugname}`).then((res: any) => {
-      setSlug(slugname);
-      setTitle(res.article.title);
-      setCreatedAt(res.article.createdAt);
+    AXIOS.get(`articles/${slug}`).then((res: any) => {
+      setTitle(res.data.article.title);
+      setCreatedAt(res.data.article.createdAt);
+      setBody(res.data.article.body);
+      setTagList(res.data.article.tagList);
     });
   }, []);
+
   return (
     <div>
       <header className={classes.header}>
         <Typography component="h2" variant="h2" className={classes.title}>
-          Title
+          {title}
         </Typography>
         <ReadMoreInfoProfile
           username={username}
@@ -72,6 +77,25 @@ const ReadMore: React.FC = () => {
         />
       </header>
 
+      <div>
+        <p style={{ padding: "25px", fontWeight: "bold" }}>{body}</p>
+        <div>
+          {tagList.map((el: any) => (
+            <Typography
+              component="span"
+              style={{
+                fontSize: "12px",
+                padding: "5px 10px",
+                border: "1px solid dodgerblue",
+                borderRadius: "20px",
+                color: "dodgerblue"
+              }}
+            >
+              {el}
+            </Typography>
+          ))}
+        </div>
+      </div>
       <div className={classes.divComment}>
         <ReadMoreComment slug={slug} />
       </div>

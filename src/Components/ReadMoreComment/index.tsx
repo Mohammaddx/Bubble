@@ -15,7 +15,8 @@ const ReadMoreCommnet: React.FC<{ slug: string }> = ({ slug }) => {
     setBody(event.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
     AXIOS.post(`articles/${slug}/comments`, { comment: { body } })
       .then((res: any) => {
         console.log(res.data);

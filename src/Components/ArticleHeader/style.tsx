@@ -19,12 +19,11 @@ export const useStyle = makeStyles((theme: Theme) =>
     },
 
     HeaderDivH4: {
-      color: "dodgerblue",
-      lineHeight: "2px"
+      color: "dodgerblue"
     },
     HeaderDivSpan: {
       color: "#aaa",
-      lineHeight: "2px"
+      fontSize: "12px"
     },
     Button: {
       borderTopLeftRadius: "50%",

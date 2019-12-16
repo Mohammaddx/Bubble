@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import FavoriteIcon from "@material-ui/icons/Favorite";
+import Typography from "@material-ui/core/Typography";
 import { NavLink } from "react-router-dom";
 import AXIOS from "../../utils/axios";
 import { useStyle } from "./style";
@@ -58,11 +59,17 @@ const ArticleHeader: React.FC<{
             to={`/profile/@/${username}`}
             style={{ textDecoration: "none" }}
           >
-            <h4 className={classes.HeaderDivH4}>{username}</h4>
+            <Typography
+              component="h6"
+              variant="h6"
+              className={classes.HeaderDivH4}
+            >
+              {username}
+            </Typography>
           </NavLink>
-          <span className={classes.HeaderDivSpan}>
+          <Typography component="span" className={classes.HeaderDivSpan}>
             <i className="fas fa-history"></i> {createdat}{" "}
-          </span>
+          </Typography>
         </div>
       </div>
 

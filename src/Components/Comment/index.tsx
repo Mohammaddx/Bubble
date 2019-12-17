@@ -27,8 +27,13 @@ const Comment: React.FC<{ body: string; slug: string; id: number }> = ({
   return (
     <div className={classes.root}>
       <p className={classes.paragraph}>{body}</p>
-      <Button size="small" variant="contained" className={classes.Button}>
-        <DeleteIcon onClick={handleDelete} /> Remove Comment
+      <Button
+        size="small"
+        variant="contained"
+        className={classes.Button}
+        onClick={handleDelete}
+      >
+        <DeleteIcon /> Remove Comment
       </Button>
     </div>
   );

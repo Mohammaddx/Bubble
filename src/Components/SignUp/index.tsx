@@ -7,16 +7,39 @@ import { useStyles } from "./style";
 import AXIOS from "../../utils/axios";
 import ReactWOW from "react-wow";
 import "../../animate.css";
+import { Formik, Form } from "formik";
+import * as yup from "yup";
 
 export interface SignUpInterface {
   children: React.ReactNode;
 }
 
+interface Values {
+  username: string;
+  password: string;
+  email: string;
+}
+
+const schema = yup.object().shape({
+  username: yup
+    .string()
+    .max(20, "Username is too long (maximum is 20 characters)")
+    .required("Username is required"),
+  password: yup
+    .string()
+    .min(8, "Password is too short (minimum is 8 characters)")
+    .required("Password is required"),
+  email: yup
+    .string()
+    .email("Invalid email")
+    .required("Email is required")
+});
+
 const SignUp: React.FC = () => {
-  const [username, setUsername]: any = useState("");
-  const [email, setEmail]: any = useState("");
-  const [password, setPassword]: any = useState("");
-  const [error, setError]: any = useState([]);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState([]);
 
   const handleUsername = (event: any) => {
     setUsername(event.target.value);
@@ -30,9 +53,14 @@ const SignUp: React.FC = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    AXIOS.authPost("users", { user: { username, email, password } })
+  const handleFormSubmition = async (values: Values) => {
+    AXIOS.authPost("users", {
+      user: {
+        username: values.username,
+        email: values.email,
+        password: values.password
+      }
+    })
       .then(res => {
         localStorage.setItem("Token", res.data.user.token);
         localStorage.setItem("userData", JSON.stringify(res.data));
@@ -60,73 +88,86 @@ const SignUp: React.FC = () => {
           <Grid item xs={12} className={classes.title}>
             <Typography variant="h5">Sign Up</Typography>
           </Grid>
-          <form className={classes.form} onSubmit={handleSubmit}>
-            <div>
-              {error.map((el: any) => (
-                <Typography component="p" key={el} style={{ color: "red" }}>
-                  {el}
-                </Typography>
-              ))}
-            </div>
-            <Grid item xs={12}>
-              <TextFeild
-                className={classes.textFeild}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="username"
-                label="User Name"
-                name="username"
-                autoComplete="username"
-                autoFocus
-                onChange={handleUsername}
-              />
-            </Grid>
+          <Formik
+            enableReinitialize
+            initialValues={{
+              username: username,
+              password: password,
+              email: email
+            }}
+            validationSchema={schema}
+            onSubmit={handleFormSubmition}
+          >
+            {() => (
+              <Form className={classes.form}>
+                <div>
+                  {error.map((el: any) => (
+                    <Typography component="p" key={el} style={{ color: "red" }}>
+                      {el}
+                    </Typography>
+                  ))}
+                </div>
+                <Grid item xs={12}>
+                  <TextFeild
+                    className={classes.textFeild}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="username"
+                    label="User Name"
+                    name="username"
+                    autoComplete="username"
+                    autoFocus
+                    onChange={handleUsername}
+                  />
+                </Grid>
 
-            <Grid item xs={12}>
-              <TextFeild
-                className={classes.textFeild}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="E-mail"
-                name="email"
-                autoComplete="email"
-                onChange={handleEmail}
-              />
-            </Grid>
+                <Grid item xs={12}>
+                  <TextFeild
+                    className={classes.textFeild}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="email"
+                    label="E-mail"
+                    name="email"
+                    autoComplete="email"
+                    onChange={handleEmail}
+                  />
+                </Grid>
 
-            <Grid item xs={12}>
-              <TextFeild
-                className={classes.textFeild}
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="password"
-                label="Password"
-                type="password"
-                name="password"
-                autoComplete="current password"
-                onChange={handlePassword}
-              />
-            </Grid>
+                <Grid item xs={12}>
+                  <TextFeild
+                    className={classes.textFeild}
+                    variant="outlined"
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="password"
+                    label="Password"
+                    type="password"
+                    name="password"
+                    autoComplete="current password"
+                    onChange={handlePassword}
+                  />
+                </Grid>
 
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                className={classes.submit}
-              >
-                Sign UP
-              </Button>
-            </Grid>
-          </form>
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    fullWidth
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                  >
+                    Sign UP
+                  </Button>
+                </Grid>
+              </Form>
+            )}
+          </Formik>
         </Grid>
       </ReactWOW>
     </div>

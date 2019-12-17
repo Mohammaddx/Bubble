@@ -31,6 +31,8 @@ const Profile: React.FC = () => {
       setClassname("fas fa-cogs");
       AXIOS.get(`profiles/${utl.userData().username}`)
         .then(res => {
+          console.log(res.data);
+
           setImage(res.data.profile.image);
           setUsername(res.data.profile.username);
           setBio(res.data.profile.bio);

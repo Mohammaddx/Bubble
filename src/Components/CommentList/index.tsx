@@ -9,17 +9,20 @@ const CommentList: React.FC<{ slug: string }> = ({ slug }) => {
   const [comment, setComment]: any = useState([]);
 
   useEffect(() => {
-    AXIOS.get(`rticles/${slug}/comments`)
+    AXIOS.get(`articles/${slug}/comments`)
       .then(res => {
-        console.log(res.data);
+        setComment(res.data.comments);
       })
       .catch(error => console.log(error));
   }, []);
 
-  const addComment = comment.map((el: any) => (
-    <Comment body={el.body} key={el} slug={slug} id={el.id} />
-  ));
-  return <div style={{ margin: "50px" }}>{addComment}</div>;
+  return (
+    <div style={{ margin: "50px" }}>
+      {comment.map((el: any) => (
+        <Comment body={el.body} key={el} slug={slug} id={el.id} />
+      ))}
+    </div>
+  );
 };
 
 export default CommentList;

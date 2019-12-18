@@ -5,9 +5,11 @@ export const useStyle = makeStyles(() =>
     tag: {
       backgroundColor: "dodgerblue",
       color: "#fff",
-      padding: "10px 20xp",
+      padding: "10px 20px",
       borderRadius: "20px",
-      margin: "10px 0"
+      cursor: "pointer",
+      margin: "10px 0",
+      "&:hover": { boxShadow: "1px 1px 10px 1px dodgerblue" }
     },
     container: {
       backgroundColor: "#eee",
@@ -16,7 +18,8 @@ export const useStyle = makeStyles(() =>
       borderRadius: "5px"
     },
     title: {
-      textAlign: "left"
+      textAlign: "left",
+      fontSize: "20px"
     }
   })
 );

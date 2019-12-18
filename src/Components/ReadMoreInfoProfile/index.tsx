@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { useStyle } from "./style";
 import AXIOS from "../../utils/axios";
@@ -17,31 +18,18 @@ const ReadMoreInfoProfile: React.FC<{
   title: string;
   createdAt: string;
 }> = ({ username, image, following, text, classname, title, createdAt }) => {
-  const [isFollow, setIsFollow]: any = useState("");
-  const [classnamei, setClassnamei]: any = useState("");
-
   const handleFollow = (event: any) => {
-    if (following == false) {
-      AXIOS.post(`profiles/${username}/follow`, {
-        profile: { following: true }
-      })
-        .then((res: any) => {
-          console.log(res.data);
-          setIsFollow("Unfollow");
-          setClassnamei("fas fa-minus-circle");
+    following == false
+      ? AXIOS.post(`profiles/${username}/follow`, {
+          profile: { following: true }
         })
-        .catch((error: any) => console.log(error));
-    } else if (following == true) {
-      AXIOS.DELETE(`profiles/${username}/follow`)
-        .then((res: any) => {
-          console.log(res.data);
-          setIsFollow("Follow");
-          setClassnamei("fas fa-plus-circle");
-        })
-        .catch((error: any) => {
-          console.log(error);
-        });
-    }
+          .then((res: any) => {})
+          .catch((error: any) => console.log(error))
+      : AXIOS.DELETE(`profiles/${username}/follow`)
+          .then((res: any) => {})
+          .catch((error: any) => {
+            console.log(error);
+          });
   };
 
   const classes = useStyle();
@@ -51,10 +39,12 @@ const ReadMoreInfoProfile: React.FC<{
         <div className={classes.root}>
           <img src={image} alt="pic" className={classes.img} />
           <div className="text_info">
-            <h4 style={{ color: "#fff" }}>{username}</h4>
-            <span style={{ color: "#fff" }}>
+            <Typography component="h6" variant="h6" style={{ color: "#fff" }}>
+              {username}
+            </Typography>
+            <Typography component="span" style={{ color: "#fff" }}>
               <i className="fas fa-history"></i> {createdAt}
-            </span>
+            </Typography>
           </div>
         </div>
         <Button
@@ -64,7 +54,7 @@ const ReadMoreInfoProfile: React.FC<{
           className={classes.button}
           onClick={handleFollow}
         >
-          <i className={classnamei}></i> {isFollow} {username}
+          {following == true ? "UnFollow" : "Follow"} {username}
         </Button>
         <Button
           variant="contained"

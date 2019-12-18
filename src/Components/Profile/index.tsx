@@ -31,6 +31,8 @@ const Profile: React.FC = () => {
       setClassname("fas fa-cogs");
       AXIOS.get(`profiles/${utl.userData().username}`)
         .then(res => {
+          console.log(res.data);
+
           setImage(res.data.profile.image);
           setUsername(res.data.profile.username);
           setBio(res.data.profile.bio);
@@ -63,7 +65,6 @@ const Profile: React.FC = () => {
           <ReactWOW animation="rubberBand">
             <img src={image} alt="pic" className={classes.img} />
           </ReactWOW>
-          1
           <ReactWOW animation="slideInUp">
             <Typography variant="h6" component="h6">
               {username}

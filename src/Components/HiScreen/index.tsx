@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import WaterWave from "react-water-wave";
 import image from "./HiScreenBackground.jpg";
+import Typography from "@material-ui/core/Typography";
 import ReactWOW from "react-wow";
 import Logo from "./Logo.png";
 import "../../animate.css";
@@ -26,8 +27,20 @@ const HiScreen: React.FC<HiScreenInterface> = props => {
                 className={`${classes.image} hvr-grow-rotate`}
               />
             </ReactWOW>
-            <h1 className={classes.Headline1}>Bubble</h1>
-            <h2 className={classes.Headline2}>~Welcome to you~</h2>
+            <Typography
+              component="h4"
+              variant="h4"
+              className={classes.Headline1}
+            >
+              Bubble
+            </Typography>
+            <Typography
+              component="h5"
+              variant="h5"
+              className={classes.Headline2}
+            >
+              ~Welcome to you~
+            </Typography>
             <ReactWOW animation="fadeIn">
               <NavLink to="/Home">
                 <button className={classes.Button}>Get Started</button>
@@ -38,9 +51,6 @@ const HiScreen: React.FC<HiScreenInterface> = props => {
       )}
     </WaterWave>
   );
-  HiScreen.defaultProps = {
-    children: null
-  };
 };
 
 export default HiScreen;

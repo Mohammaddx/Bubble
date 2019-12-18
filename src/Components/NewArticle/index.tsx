@@ -8,16 +8,30 @@ import ReactWOW from "react-wow";
 import "../../animate.css";
 import { useStyle } from "./style";
 import AXIOS from "../../utils/axios";
+import { Formik, Form } from "formik";
+import * as yup from "yup";
 
 export interface NewArticleInterface {
   children: React.ReactNode;
 }
 
+interface Values {
+  title: string;
+  description: string;
+  body: string;
+}
+
+const schema = yup.object().shape({
+  title: yup.string().required("title can't be blank"),
+  description: yup.string().required("description can't be blank"),
+  body: yup.string().required("body can't be blank")
+});
+
 const NewArticle: React.FC = () => {
-  const [title, setTitle]: any = useState("");
-  const [description, setDesc]: any = useState("");
-  const [body, setBody]: any = useState("");
-  const [tagList, setTagList]: any = useState([]);
+  const [articleTitle, setTitle] = useState("");
+  const [articleDescription, setDesc] = useState("");
+  const [articleBody, setBody] = useState("");
+  const [tagList, setTagList] = useState([]);
 
   const handleTitle = (event: any) => {
     setTitle(event.target.value);
@@ -35,11 +49,18 @@ const NewArticle: React.FC = () => {
     setTagList(event.target.value.split(" "));
   };
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    AXIOS.post("articles", { article: { title, description, body, tagList } })
+  const handleFormSubmit = async (values: Values) => {
+    AXIOS.post("articles", {
+      article: {
+        title: values.title,
+        description: values.description,
+        body: values.body,
+        tagList: tagList
+      }
+    })
       .then((res: any) => {
         console.log(res.data);
+        alert(JSON.stringify(values, null, 2));
       })
       .catch((error: any) => {
         console.error(error);
@@ -47,82 +68,96 @@ const NewArticle: React.FC = () => {
   };
 
   const classes = useStyle();
+
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        <form style={{ width: "100%" }} onSubmit={handleSubmit}>
-          <Avatar className={classes.avatar}>
-            <AssignmentIcon className={classes.icon} fontSize="large" />
-          </Avatar>
-          <Grid item xs={12}>
-            <ReactWOW animation="fadeInLeftBig">
-              <TextField
-                id="outlined-email-input"
-                label="Article Title"
-                className={classes.textField}
-                type="text"
-                name="ArticleTitle"
-                margin="normal"
-                variant="outlined"
-                required
-                onChange={handleTitle}
-              />
-            </ReactWOW>
-          </Grid>
+        <Formik
+          enableReinitialize
+          initialValues={{
+            title: articleTitle,
+            description: articleDescription,
+            body: articleBody
+          }}
+          onSubmit={handleFormSubmit}
+          validationSchema={schema}
+        >
+          {() => (
+            <Form style={{ width: "100%" }}>
+              <Avatar className={classes.avatar}>
+                <AssignmentIcon className={classes.icon} fontSize="large" />
+              </Avatar>
+              <Grid item xs={12}>
+                <ReactWOW animation="fadeInLeftBig">
+                  <TextField
+                    id="outlined-email-input"
+                    label="Article Title"
+                    className={classes.textField}
+                    type="text"
+                    name="articleTitle"
+                    margin="normal"
+                    variant="outlined"
+                    required
+                    onChange={handleTitle}
+                  />
+                </ReactWOW>
+              </Grid>
 
-          <Grid item xs={12}>
-            <ReactWOW animation="fadeInRightBig">
-              <TextField
-                id="outlined-email-input"
-                label="What's this article about?"
-                className={classes.textField}
-                type="text"
-                name="about"
-                margin="normal"
-                variant="outlined"
-                required
-                onChange={handleDesc}
-              />
-            </ReactWOW>
-          </Grid>
+              <Grid item xs={12}>
+                <ReactWOW animation="fadeInRightBig">
+                  <TextField
+                    id="outlined-email-input"
+                    label="What's this article about?"
+                    className={classes.textField}
+                    type="text"
+                    name="articleDescription"
+                    margin="normal"
+                    variant="outlined"
+                    required
+                    onChange={handleDesc}
+                  />
+                </ReactWOW>
+              </Grid>
 
-          <Grid item xs={12}>
-            <ReactWOW animation="fadeInUp">
-              <TextField
-                id="outlined-email-input"
-                label="Write your article (in markdown)"
-                className={classes.textField}
-                type="text"
-                name="writeArticle"
-                margin="normal"
-                variant="outlined"
-                rowsMax={10}
-                multiline={true}
-                required
-                onChange={handleBody}
-              />
-            </ReactWOW>
-          </Grid>
+              <Grid item xs={12}>
+                <ReactWOW animation="fadeInUp">
+                  <TextField
+                    id="outlined-email-input"
+                    label="Write your article (in markdown)"
+                    className={classes.textField}
+                    type="text"
+                    name="articleBody"
+                    margin="normal"
+                    variant="outlined"
+                    rowsMax={10}
+                    multiline={true}
+                    required
+                    onChange={handleBody}
+                  />
+                </ReactWOW>
+              </Grid>
 
-          <Grid item xs={12}>
-            <ReactWOW animation="fadeIn">
-              <TextField
-                id="outlined-email-input"
-                label="Enter Tags"
-                className={classes.textField}
-                type="text"
-                name="EnterTags"
-                margin="normal"
-                variant="outlined"
-                onChange={handleTagList}
-              />
-            </ReactWOW>
-          </Grid>
+              <Grid item xs={12}>
+                <ReactWOW animation="fadeIn">
+                  <TextField
+                    id="outlined-email-input"
+                    label="Enter Tags"
+                    className={classes.textField}
+                    type="text"
+                    name="EnterTags"
+                    margin="normal"
+                    variant="outlined"
+                    onChange={handleTagList}
+                  />
+                </ReactWOW>
+              </Grid>
 
-          <Button className={classes.button} type="submit">
-            Publish Article
-          </Button>
-        </form>
+              <Button className={classes.button} type="submit">
+                Publish Article
+              </Button>
+            </Form>
+          )}
+        </Formik>
       </Grid>
     </div>
   );

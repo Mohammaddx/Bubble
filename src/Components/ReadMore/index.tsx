@@ -11,8 +11,6 @@ export interface ReadMore {
   username: string;
   image: string;
   following: boolean;
-  text: string;
-  classname: string;
   body: string;
   tagList: string[];
 }
@@ -26,26 +24,22 @@ const ReadMore: React.FC = () => {
   let slugname = pathSearch.substring(pathSearch.indexOf("=") + 1);
 
   //for profile
-  const [image, setImage]: any = useState("");
-  const [username, setUsername]: any = useState("");
-  const [bio, setBio]: any = useState(""); //not useing here now
-  const [following, setFellowing]: any = useState(false); //not useing here now
-  // for info
-  const [text, setText]: any = useState("");
-  const [classname, setClassname]: any = useState("");
+  const [image, setImage] = useState("");
+  const [username, setUsername] = useState("");
+  const [following, setFellowing] = useState(false); //not useing here now
+
   //for article
-  const [slug, setSlug]: any = useState(slugname);
-  const [title, setTitle]: any = useState("");
-  const [createdAt, setCreatedAt]: any = useState("");
-  const [body, setBody]: any = useState("");
-  const [tagList, setTagList]: any = useState([]);
+  const [slug] = useState(slugname);
+  const [title, setTitle] = useState("");
+  const [createdAt, setCreatedAt] = useState("");
+  const [body, setBody] = useState("");
+  const [tagList, setTagList] = useState([]);
 
   useEffect(() => {
     AXIOS.get(`profiles/${filename}`)
       .then(res => {
         setImage(res.data.profile.image);
         setUsername(res.data.profile.username);
-        setBio(res.data.profile.bio);
         setFellowing(res.data.profile.following);
       })
       .catch(err => {
@@ -70,9 +64,6 @@ const ReadMore: React.FC = () => {
           username={username}
           image={image}
           following={following}
-          text={text}
-          classname={classname}
-          title={title}
           createdAt={createdAt}
         />
       </header>

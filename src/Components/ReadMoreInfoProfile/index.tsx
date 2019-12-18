@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -13,13 +13,10 @@ const ReadMoreInfoProfile: React.FC<{
   username: string;
   image: string;
   following: boolean;
-  text: string;
-  classname: string;
-  title: string;
   createdAt: string;
-}> = ({ username, image, following, text, classname, title, createdAt }) => {
-  const handleFollow = (event: any) => {
-    following == false
+}> = ({ username, image, following, createdAt }) => {
+  const handleFollow = () => {
+    following === false
       ? AXIOS.post(`profiles/${username}/follow`, {
           profile: { following: true }
         })
@@ -54,7 +51,7 @@ const ReadMoreInfoProfile: React.FC<{
           className={classes.button}
           onClick={handleFollow}
         >
-          {following == true ? "UnFollow" : "Follow"} {username}
+          {following === true ? "UnFollow" : "Follow"} {username}
         </Button>
         <Button
           variant="contained"

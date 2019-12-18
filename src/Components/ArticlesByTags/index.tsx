@@ -14,9 +14,9 @@ const ArticlesByTags: React.FC<{ articleDataForTag: any[] }> = ({
   }, [articleDataForTag]);
   return (
     <div>
-      {article.map((el: any) => (
+      {article.map((el: any, index: number) => (
         <Article
-          key={el}
+          key={index}
           slug={el.slug}
           image={el.author.image}
           title={el.title}

@@ -14,12 +14,12 @@ const CommentList: React.FC<{ slug: string }> = ({ slug }) => {
         setComment(res.data.comments);
       })
       .catch(error => console.log(error));
-  }, []);
+  }, [slug]);
 
   return (
     <div style={{ margin: "50px" }}>
-      {comment.map((el: any) => (
-        <Comment body={el.body} key={el} slug={slug} id={el.id} />
+      {comment.map((el: any, index: number) => (
+        <Comment body={el.body} key={index} slug={slug} id={el.id} />
       ))}
     </div>
   );

@@ -48,11 +48,11 @@ const MyArticles: React.FC = () => {
   }, []);
   return (
     <div>
-      {article.map((el: any) => {
-        if (el.author.username == name) {
+      {article.map((el: any, index: number) => {
+        if (el.author.username === name) {
           return (
             <Article
-              key={el}
+              key={index}
               slug={el.slug}
               image={el.author.image}
               title={el.title}

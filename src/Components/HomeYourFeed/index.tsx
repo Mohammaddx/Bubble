@@ -52,10 +52,10 @@ const HomeYourFeed: React.FC = () => {
 
   return (
     <div>
-      <p>{isEmpty == 0 ? "Sorry, No articles yet..." : ""}</p>
-      {currentArticles.map((el: any) => (
+      <p>{isEmpty === 0 ? "Sorry, No articles yet..." : ""}</p>
+      {currentArticles.map((el: any, index: number) => (
         <Article
-          key={el}
+          key={index}
           slug={el.slug}
           image={el.author.image}
           title={el.title}

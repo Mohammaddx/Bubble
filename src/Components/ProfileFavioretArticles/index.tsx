@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Article from "../Article/index";
 import AXIOS from "../../utils/axios";
 import utl from "../../utils/utils";
-import Pagination from "../Pagination/pagination";
 
 export interface FavioretArticleInterface {
   children: React.ReactNode;
@@ -49,11 +48,11 @@ const FavioretArticle: React.FC = () => {
   }, []);
   return (
     <div>
-      {article.map((el: any) => {
-        if (el.favorited == true && el.author.username == name) {
+      {article.map((el: any, index: number) => {
+        if (el.favorited === true && el.author.username === name) {
           return (
             <Article
-              key={el}
+              key={index}
               slug={el.slug}
               image={el.author.image}
               title={el.title}

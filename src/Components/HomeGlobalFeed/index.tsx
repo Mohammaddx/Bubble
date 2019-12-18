@@ -56,9 +56,9 @@ const HomeGlobalFeed: React.FC = () => {
 
   return (
     <div className="container">
-      {currentArticles.map((el: any) => (
+      {currentArticles.map((el: any, index: number) => (
         <Article
-          key={el}
+          key={index}
           slug={el.slug}
           image={el.author.image}
           title={el.title}

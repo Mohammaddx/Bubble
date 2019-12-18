@@ -16,8 +16,8 @@ export interface ProfileInterface {
 const Profile: React.FC = () => {
   const [image, setImage]: any = useState("");
   const [username, setUsername]: any = useState("");
-  const [bio, setBio]: any = useState(""); //not useing here now
-  const [following, setFellowing]: any = useState(false); //not useing here now
+  const [bio, setBio]: any = useState("");
+  const [setFellowing]: any = useState(false);
 
   //for button
   const [text, setText]: any = useState("");
@@ -49,7 +49,6 @@ const Profile: React.FC = () => {
           setImage(res.data.profile.image);
           setUsername(res.data.profile.username);
           setBio(res.data.profile.bio);
-          setFellowing(res.data.profile.following);
         })
         .catch(err => {
           console.error(err);
@@ -68,6 +67,11 @@ const Profile: React.FC = () => {
           <ReactWOW animation="slideInUp">
             <Typography variant="h6" component="h6">
               {username}
+            </Typography>
+          </ReactWOW>
+          <ReactWOW animation="slideInUp">
+            <Typography variant="h6" component="h6">
+              {bio}
             </Typography>
           </ReactWOW>
           <ReactWOW animation="fadeIn">

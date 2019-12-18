@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -69,7 +69,7 @@ const HomeTabs: React.FC<{ tagName: string; articleDataForTag: any[] }> = ({
         >
           <Tab label="Your Feed" {...a11yProps(0)} />
           <Tab label="Global Feed" {...a11yProps(1)} />
-          <Tab label={tagName == "" ? "" : `#${tagName}`} {...a11yProps(1)} />
+          <Tab label={tagName === "" ? "" : `#${tagName}`} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

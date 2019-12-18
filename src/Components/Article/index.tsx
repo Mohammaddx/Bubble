@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -66,8 +66,9 @@ const Article: React.FC<{
 
           <Grid item md={6} xs={12}>
             <div>
-              {tagList.map((el: any) => (
+              {tagList.map((el: any, index: number) => (
                 <Typography
+                  key={index}
                   component="span"
                   style={{
                     fontSize: "12px",

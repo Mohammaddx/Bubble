@@ -4,6 +4,7 @@ import TextFeild from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useStyles } from "./style";
+import { Redirect } from "react-router-dom";
 import AXIOS from "../../utils/axios";
 import ReactWOW from "react-wow";
 import "../../animate.css";
@@ -36,10 +37,12 @@ const schema = yup.object().shape({
 });
 
 const SignUp: React.FC = () => {
+  const classes = useStyles();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState([]);
+  const [isLoggin, setIsLoggin] = useState(false);
 
   const handleUsername = (event: any) => {
     setUsername(event.target.value);
@@ -53,6 +56,10 @@ const SignUp: React.FC = () => {
     setPassword(event.target.value);
   };
 
+  if (isLoggin) {
+    return <Redirect to="/Home" />;
+  }
+
   const handleFormSubmition = async (values: Values) => {
     AXIOS.authPost("users", {
       user: {
@@ -64,6 +71,7 @@ const SignUp: React.FC = () => {
       .then(res => {
         localStorage.setItem("Token", res.data.user.token);
         localStorage.setItem("userData", JSON.stringify(res.data));
+        setIsLoggin(true);
       })
       .catch((err: any) => {
         let arr: any = [];
@@ -80,7 +88,6 @@ const SignUp: React.FC = () => {
       });
   };
 
-  const classes = useStyles();
   return (
     <div className={classes.SignUp}>
       <ReactWOW animation="jackInTheBox">

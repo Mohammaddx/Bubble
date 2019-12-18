@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
+import { Redirect } from "react-router-dom";
 import TextFeild from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -32,6 +33,7 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoggin, setIsLoggin] = useState(false);
 
   const handleEmail = (event: any) => {
     setEmail(event.target.value);
@@ -41,13 +43,16 @@ const SignIn: React.FC = () => {
     setPassword(event.target.value);
   };
 
+  if (isLoggin) {
+    return <Redirect to="/Home" />;
+  }
   const handleFormSubmit = (values: Values) => {
     AXIOS.post("users/login", {
       user: { email: values.email, password: values.password }
     })
       .then((res: any) => {
-        console.log(res.data.user);
-        alert(JSON.stringify(values, null, 2));
+        console.log(":hi");
+        setIsLoggin(true);
       })
       .catch((error: any) => {
         setError(

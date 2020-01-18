@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import { useStyle } from "./style";
 import AXIOS from "../../utils/axios";
@@ -51,10 +52,12 @@ const ReadMoreInfoProfile: React.FC<{
         <div className={classes.root}>
           <img src={image} alt="pic" className={classes.img} />
           <div className="text_info">
-            <h4 style={{ color: "#fff" }}>{username}</h4>
-            <span style={{ color: "#fff" }}>
+            <Typography component="h6" variant="h6" style={{ color: "#fff" }}>
+              {username}
+            </Typography>
+            <Typography component="span" style={{ color: "#fff" }}>
               <i className="fas fa-history"></i> {createdAt}
-            </span>
+            </Typography>
           </div>
         </div>
         <Button

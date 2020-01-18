@@ -21,10 +21,6 @@ const Home: React.FC = () => {
       </div>
     </div>
   );
-
-  Home.defaultProps = {
-    children: null
-  };
 };
 
 export default Home;

@@ -17,15 +17,9 @@ const HomeGlobalFeed: React.FC = () => {
   const [article, setArticle]: any = useState([]);
 
   useEffect(() => {
-    AXIOS.get("articles/feed")
+    AXIOS.get("articles")
       .then((res: any) => {
-        if (res.data.articles.length == 0) {
-          alert("Sorry, we don't have a data now in Global Feed!");
-        } else {
-          if (res.data.articles.author.following == true) {
-            setArticle(res.data.articles);
-          }
-        }
+        setArticle(res.data.articles);
       })
       .catch((error: any) => {
         console.log(error);

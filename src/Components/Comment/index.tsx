@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from "@material-ui/icons/Delete";
+import Typography from "@material-ui/core/Typography";
 import { useStyle } from "./style";
 import AXIOS from "../../utils/axios";
 
@@ -26,7 +27,9 @@ const Comment: React.FC<{ body: string; slug: string; id: number }> = ({
 
   return (
     <div className={classes.root}>
-      <p className={classes.paragraph}>{body}</p>
+      <Typography component="p" variant="p" className={classes.paragraph}>
+        {body}
+      </Typography>
       <Button size="small" variant="contained" className={classes.Button}>
         <DeleteIcon onClick={handleDelete} /> Remove Comment
       </Button>

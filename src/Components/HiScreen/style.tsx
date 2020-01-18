@@ -28,15 +28,21 @@ export const useStyle = makeStyles((theme: Theme) =>
     Headline1: {
       fontWeight: "bold",
       color: "darkorchid",
-      textShadow: "1px 1px 5px #000"
+      textShadow: "1px 1px 5px #000",
+      fontFamily: "'Alfa Slab One', cursive",
+      position: "relative",
+      top: "10px",
+      lineHeight: 1.8
     },
     Headline2: {
       fontWeight: "bold",
       color: "transparent",
-      textShadow: "1px 1px 2px dodgerblue"
+      textShadow: "1px 1px 2px dodgerblue",
+      fontFamily: "'Alfa Slab One', cursive"
     },
     Button: {
       position: "relative",
+      top: "10px",
       padding: "10px 20px",
       border: "0px solid purple",
       color: "#fff",

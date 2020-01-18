@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import HomeGlobalFeed from "../HomeGlobalFeed/index";
 import HomeYourFeed from "../HomeYourFeed/index";
+import ArticlesByTags from "../ArticlesByTags/index";
 import { useStyles } from "./style";
 
 interface TabPanelProps {
@@ -15,7 +16,8 @@ interface TabPanelProps {
 }
 
 export interface HomeTabsInterface {
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  tag: any;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -42,9 +44,9 @@ function a11yProps(index: any) {
   };
 }
 
-const HomeTabs: React.FC = () => {
+const HomeTabs: React.FC<{ tag: any }> = tag => {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   function handleChange(event: React.ChangeEvent<{}>, newValue: number) {
     setValue(newValue);
@@ -64,6 +66,7 @@ const HomeTabs: React.FC = () => {
         >
           <Tab label="Your Feed" {...a11yProps(0)} />
           <Tab label="Global Feed" {...a11yProps(1)} />
+          <Tab label={tag.tag != "" ? `#${tag.tag}` : ""} {...a11yProps(1)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -72,12 +75,11 @@ const HomeTabs: React.FC = () => {
       <TabPanel value={value} index={1}>
         <HomeGlobalFeed />
       </TabPanel>
+      <TabPanel value={value} index={2}>
+        <ArticlesByTags tagName={tag.tag} />
+      </TabPanel>
     </div>
   );
-
-  HomeTabs.defaultProps = {
-    children: true
-  };
 };
 
 export default HomeTabs;

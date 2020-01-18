@@ -1,4 +1,5 @@
 import * as React from "react";
+import Typography from "@material-ui/core/Typography";
 
 export interface ArticleBodyInterface {
   children: React.ReactNode;
@@ -12,7 +13,9 @@ const ArticleBody: React.FC<{ title: string; body: string }> = ({
 }) => {
   return (
     <div>
-      <h3>{title}</h3>
+      <Typography component="h5" variant="h5" style={{ fontWeight: "bold" }}>
+        {title}
+      </Typography>
       <p>{body}</p>
     </div>
   );

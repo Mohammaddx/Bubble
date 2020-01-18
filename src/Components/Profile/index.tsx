@@ -63,7 +63,6 @@ const Profile: React.FC = () => {
           <ReactWOW animation="rubberBand">
             <img src={image} alt="pic" className={classes.img} />
           </ReactWOW>
-          1
           <ReactWOW animation="slideInUp">
             <Typography variant="h6" component="h6">
               {username}

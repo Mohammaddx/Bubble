@@ -74,10 +74,6 @@ const HomeTabs: React.FC = () => {
       </TabPanel>
     </div>
   );
-
-  HomeTabs.defaultProps = {
-    children: true
-  };
 };
 
 export default HomeTabs;

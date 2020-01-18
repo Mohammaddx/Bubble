@@ -16,7 +16,8 @@ export const useStyle = makeStyles(() =>
       borderRadius: "5px"
     },
     title: {
-      textAlign: "left"
+      textAlign: "left",
+      fontSize: "20px"
     }
   })
 );

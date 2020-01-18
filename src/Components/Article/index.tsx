@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 import ArticleHeader from "../ArticleHeader/index";
 import ArticleBody from "../ArticleBody/index";
 import { useStyle } from "./style";
@@ -53,14 +54,14 @@ const Article: React.FC<{
 
         <Grid item xs={12}>
           {" "}
-          <span>
+          <Typography component="span">
             <NavLink
               to={`/ReadMore/@/${username}?slug=${slug}`}
               className={classes.link}
             >
               Read more...
             </NavLink>
-          </span>
+          </Typography>
         </Grid>
       </Grid>
     </div>

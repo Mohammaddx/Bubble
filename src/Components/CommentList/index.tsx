@@ -16,10 +16,13 @@ const CommentList: React.FC<{ slug: string }> = ({ slug }) => {
       .catch(error => console.log(error));
   }, []);
 
-  const addComment = comment.map((el: any) => (
-    <Comment body={el.body} key={el} slug={slug} id={el.id} />
-  ));
-  return <div style={{ margin: "50px" }}>{addComment}</div>;
+  return (
+    <div style={{ margin: "50px" }}>
+      {comment.map((el: any) => (
+        <Comment body={el.body} key={el} slug={slug} id={el.id} />
+      ))}
+    </div>
+  );
 };
 
 export default CommentList;

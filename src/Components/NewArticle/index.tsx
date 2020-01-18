@@ -36,7 +36,6 @@ const NewArticle: React.FC = () => {
   };
 
   const handleSubmit = async (event: any) => {
-    event.preventDefault();
     AXIOS.post("articles", { article: { title, description, body, tagList } })
       .then((res: any) => {
         console.log(res.data);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
+import Typography from '@material-ui/core/Typography';
 import { useStyle } from "./style";
 import ReactWOW from "react-wow";
 import "../../animate.css";
@@ -31,7 +32,7 @@ const PopulerTags = (props: any) => {
   return (
     <ReactWOW animation="slideInUp">
       <div className={classes.container}>
-        <h4 className={classes.title}>Populer Tags</h4>
+        <Typography component="h4" variant="h4" className={classes.title}>Populer Tags</Typography>
         <Grid container spacing={1}>
           {PopulerTagsData}
         </Grid>
